@@ -5,7 +5,7 @@ import ply.lex as plex
 class LogicLexer:
     keywords = ("verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "for", "endfor")
     tokens = keywords + ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico")
-    literals = "()+-/*;[],"
+    literals = "()+-/*;[],#"
     t_ignore = " \t\n"
 
     def t_comment(self, t):
