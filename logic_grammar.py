@@ -8,11 +8,10 @@ from logic_eval import LogicEval
 
 class LogicGrammar:
     precedence = (
-        ("left", "+", "-"),
-        ("left", "*", "/"),
-        ("right", "uminus"),
-        ("left", "ou"),   # menor prioridade
+        ("left", "ou"),
         ("left", "e"),
+        ("left", "+", "-"),
+        ("left", "*", "/")
     )
 
     def p_error(self, p):
@@ -21,100 +20,117 @@ class LogicGrammar:
         else:
             raise Exception("Parse Error: Expecting token")
 
-        #
+    def p_code0(self,p):
+        """ code : Inicio ':' S ':' Fim """
+        p[0] = {'args': [p[1], p[4]], 'code': p[3]}
 
+    def p_code1(self,p):
+        """code : Inicio ':' code ';' S ':' Fim"""
+        p[0] = p[3]
+        p[0].append(p[5])
 
-    def p_code1(self, p):
-        """ code : r """
-        p[0] = [p[1]]
-
-    def p_code2(self, p):
-        """ code : code ';' r """
-
-        p[0] = p[1] + [p[3]]  # concatenate!
-
-    def p_ciclo(self, p):
-        """ ciclo : for var '[' n ellipsis n ']' code ';' endfor """
-        p[0] = {
-            "op": "for",
-            "args": [p[2], p[4], p[6]],
-            "data": [p[8]],
-        }
-
-
-
-    def p_r1(self, p):
-        """ r : a
-              | ciclo """
+    def p_s0(self,p):
+        """S : E
+             | C"""
         p[0] = p[1]
 
-    def p_r2(self, p):
-        """ r : var atribui a"""
+    def p_c0(self,p):
+        """C : escreva '(' e_list ')' ';'"""
+        p[0] = {'op': p[1], 'args': p[2]}
+
+    def p_c1(self,p):
+        """C : leia '(' var ')' ';'"""
+        p[0] = {'op': 'attrib', 'args': [{'var': p[1]}, p[3]]}
+
+    def p_c2(self,p):
+        """ C : var atribui E """
         p[0] = {"op": "atribui", "args": [p[1], p[3]]}
 
-    def p_r3(self, p):
-        """r : escreva a_list"""
-        p[0] = {"op": "escreva", "args": p[2]}
+    def p_elist0(self, p):
+        """ e_list : E
+                   | string """
+        p[0] = [p[1]]
 
-    #def p_r4(self, p):
-        #"""r : leia a_list"""
-        #p[0] = {"op": "leia", "args": p[2]}
-
-    def p_a_list(self, p):
-        """a_list : a
-                  | a_list ',' a """
-        if len(p) == 2:
-            p[0] = [p[1]]
-        else:
-            p[0] = p[1] + [p[3]]
+    def p_elist1(self, p):
+        """ e_list : e_list ',' E
+                   | e_list ',' string """
+        p[0] = p[1]
+        p[0].append(p[3])
 
     def p_n1(self, p):
-        """ n : nr
-              | '-' a  %prec uminus  """
-        p[0] = p[1] if len(p) == 2 else {"op": "-", "args": [0.0, p[2]]}
+        """N : nr """
+        p[0] = p[1]
 
     def p_n2(self, p):
-        """ n : a '+' a
-              | a '-' a
-              | a '*' a
-              | a '/' a
-              | a 't' a"""
-        p[0] = dict(op=p[2], args=[p[1], p[3]])
+        """N : E '+' E
+             | E '-' E
+             | E '*' E
+             | E '/' E """
+        p[0] = {"op": p[2], "args": [p[1], p[3]]}
 
-    def p_b1(self, p):
-        """ b : f
-              | a ou a
-              | a e a """
-        if len(p) == 2:
-            p[0] = p[1]
-        else:
-            p[0] = dict(op=p[2], args=[p[1], p[3]])
+    def p_b0(self,p):
+        """B : F"""
+        p[0] = p[1]
+
+    def p_b1(self,p):
+        """B : E e E
+             | E ou E"""
+        p[0] = {"op": p[2], "args": [p[1], p[3]]}
 
     def p_f1(self, p):
-        """ f : verdadeiro """
+        """ F : verdadeiro """
         p[0] = True
 
     def p_f2(self, p):
-        """ f : falso """
+        """ F : falso """
         p[0] = False
 
     def p_f3(self, p):
-        """ f : nao f """
-        p[0] = dict(op="nao", args=[p[2]])
+        """ F : nao F
+              | nao var"""
+        p[0] = {"op": "nao", "args": [p[2]]}
 
-    def p_a1(self, p):
-        """ a : var """
-        p[0] = {'var': p[1]}
+    def p_args(self, p):
+        """ args :
+                 | var_list """
+        if len(p) == 1:  # regra de cima
+            p[0] = []
+        else:  # segunda regra
+            p[0] = p[1]
 
-    def p_a2(self, p):
-        """ a : '(' a ')' """
-        p[0] = p[2]
+    def p_var_list(self, p):
+        """ var_list : var
+                     | var_list ',' var """
+        if len(p) == 2:
+            p[0] = [{'var': p[1]}]
+        else:
+            p[0] = p[1]
+            p[0].append({'var': p[3]})
 
-    def p_a3(self, p):
-        """ a : b
-              | n
-              | string """
-        p[0] = p[1]
+    def p_arg_list(self, p):
+        """ arg_list : E
+                     | arg_list ',' E """
+        if len(p) == 2:
+            p[0] = [p[1]]
+        else:
+            p[0] = p[1]
+            p[0].append(p[3])
+
+    def p_E0(self, p):
+        """E : B
+             | N
+             | var
+             | '(' E ')' """
+        if len(p) == 2:
+            p[0] = p[1]
+        else:
+            p[0] = p[2]
+
+    def p_E1(self, p):
+        """ E : var '(' arg_list ')'
+              | var '(' ')' """
+        arg_list = [] if p[3] == ')' else p[3]
+        p[0] = {"op": "call", "args": [{"var": p[1]}, {"argList": arg_list}]}
 
     def __init__(self):
         self.lexer = LogicLexer()

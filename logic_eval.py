@@ -29,15 +29,15 @@ class LogicEval:
     symbols = {}
 
     @staticmethod
-    def _for(var, lower, higher, code):
-        inc, comp = (1, lambda a, b: a <= b) \
-            if lower < higher else (-1, lambda a, b: a >= b)
-        value = lower
-        LogicEval._assign(var, value)
-        while comp(value, higher):
+    def _for(args):
+        var, baixo, alto, code = args
+        iterator = baixo
+        while iterator <= alto:
+            LogicEval.symbols[var] = iterator
             LogicEval.eval(code)
-            value += inc
-            LogicEval._assign(var, value)
+            iterator += 1
+        return None
+
 
     @staticmethod
     def _assign(var, value):

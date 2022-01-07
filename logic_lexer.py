@@ -3,24 +3,26 @@ import ply.lex as plex
 
 
 class LogicLexer:
-    keywords = ("verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "for", "endfor")
-    tokens = keywords + ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico")
-    literals = "()+-/*;[],#"
+
+    tokens = ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico",
+                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "for", "endfor", "Inicio", "Fim")
+
+    literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#']
     t_ignore = " \t\n"
 
     def t_comment(self, t):
         r"""\#.*"""
         pass
 
-    def t_inteiro(self, t):
-        r"[0-9]+"
-        t.value = int(t.value)
-        return t
+    #def t_inteiro(self, t):
+    #   r"[0-9]+"
+    #   t.value = int(t.value)
+    #    return t
 
-    def t_real(self, t):
+    '''def t_real(self, t):
         r"""[0-9]+(\.[0-9]+)?"""
         t.value = float(t.value)
-        return t
+        return t'''
 
     def t_caracter(self,t):
         r'"[^"]*"'
@@ -36,6 +38,11 @@ class LogicLexer:
         t.value = t.value[1:-1]
         return t
 
+    def t_str(self, t):
+        r"não|verdadeiro|falso|e|ou|print|for"
+        t.type = t.value
+        return t
+
     def t_nr(self, t):
         r"""[0-9]+(\.[0-9]+)?"""
         t.value = float(t.value)
@@ -43,11 +50,6 @@ class LogicLexer:
 
     def t_atribui(self, t):
         r"""<-"""
-        return t
-
-    def t_keywords(self, t):
-        r"""[a-z]+"""
-        t.type = t.value if t.value in self.keywords else "var"
         return t
 
     def t_error(self, t):
