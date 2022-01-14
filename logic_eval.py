@@ -17,19 +17,19 @@ class LogicEval:
         "/": lambda args: args[0] / args[1],
         "t": lambda args: args[0] ** args[1],
         "cos": lambda args:  math.cos(args[0]),
-        "sen()": lambda args:  math.sin(args[0]),
+        "sen": lambda args:  math.sin(args[0]),
 
-
-        "atribui": lambda a: LogicEval._assign(*a),
+        "atribui": lambda a: LogicEval._atribui(*a),
         "escreva": lambda a: print(*a),
         "leia": lambda a: input(*a),
-        "for": lambda args: LogicEval._for(*args)
+        "se": lambda args: LogicEval._se(*args),
+        "para": lambda args: LogicEval._para(*args)
     }
     # Symbol Table (Tabela de Símbolos)
     symbols = {}
 
     @staticmethod
-    def _for(args):
+    def _para(args):
         var, baixo, alto, code = args
         iterator = baixo
         while iterator <= alto:
@@ -40,7 +40,7 @@ class LogicEval:
 
 
     @staticmethod
-    def _assign(var, value):
+    def _atribui(var, value):
         LogicEval.symbols[var] = value
 
     @staticmethod
@@ -55,6 +55,10 @@ class LogicEval:
                 ans = LogicEval._eval_dict(c)
             return ans
         raise Exception(f"Eval called with weird type: {type(ast)}")
+
+    @staticmethod
+    def _se(cond, entao, senao):
+        return LogicEval.eval(entao if cond else senao)
 
     @staticmethod
     def _eval_dict(ast):
@@ -75,5 +79,4 @@ class LogicEval:
                 return LogicEval.symbols[ast["var"]]
             raise Exception(f"Unknown variable {ast['var']}")
         else:
-            raise Exception("Weird dict on eval")
-
+            raise Exception("Weird dict on eval")# logic_eval

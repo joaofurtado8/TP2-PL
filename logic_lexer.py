@@ -4,30 +4,16 @@ import ply.lex as plex
 
 class LogicLexer:
 
+    keywords = ()
     tokens = ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico",
-                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "for", "endfor", "Inicio", "Fim")
+                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "for", "endfor", "Inicio", "Fim", "cos")
 
-    literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#']
+    literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#', ':']
     t_ignore = " \t\n"
 
     def t_comment(self, t):
         r"""\#.*"""
         pass
-
-    #def t_inteiro(self, t):
-    #   r"[0-9]+"
-    #   t.value = int(t.value)
-    #    return t
-
-    '''def t_real(self, t):
-        r"""[0-9]+(\.[0-9]+)?"""
-        t.value = float(t.value)
-        return t'''
-
-    def t_caracter(self,t):
-        r'"[^"]*"'
-        t.value = t.value[1:-1]
-        return t
 
     def t_ellipsis(self, t):
         r"""\.{3}"""
@@ -39,8 +25,12 @@ class LogicLexer:
         return t
 
     def t_str(self, t):
-        r"não|verdadeiro|falso|e|ou|print|for"
+        r"não|verdadeiro|falso|e(screva)?|ou|for|Inicio|Fim|cos|atribui"
         t.type = t.value
+        return t
+
+    def t_var(self, t):
+        r"[a-z_]+"
         return t
 
     def t_nr(self, t):
@@ -60,4 +50,3 @@ class LogicLexer:
 
     def token(self):
         return self.lex.token()
-

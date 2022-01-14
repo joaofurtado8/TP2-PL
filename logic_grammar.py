@@ -11,7 +11,7 @@ class LogicGrammar:
         ("left", "ou"),
         ("left", "e"),
         ("left", "+", "-"),
-        ("left", "*", "/")
+        ("left", "*", "/", "cos")
     )
 
     def p_error(self, p):
@@ -20,38 +20,46 @@ class LogicGrammar:
         else:
             raise Exception("Parse Error: Expecting token")
 
-    def p_code0(self,p):
-        """ code : Inicio ':' S ':' Fim """
-        p[0] = {'args': [p[1], p[4]], 'code': p[3]}
+    def p_axioma0(self, p):
+        """ axioma : Inicio code Fim"""
+        p[0] = p[2]
 
-    def p_code1(self,p):
-        """code : Inicio ':' code ';' S ':' Fim"""
-        p[0] = p[3]
-        p[0].append(p[5])
+    def p_code0(self, p):
+        """ code : S """
+        p[0] = [p[1]]
 
-    def p_s0(self,p):
+    def p_code1(self, p):
+        """code : code ';' S """
+        p[0] = p[1]
+        p[0].append(p[3])
+
+    def p_s0(self, p):
         """S : E
              | C"""
         p[0] = p[1]
 
     def p_c0(self,p):
         """C : escreva '(' e_list ')' ';'"""
-        p[0] = {'op': p[1], 'args': p[2]}
+        p[0] = {'op': p[1], 'args': p[3]}
 
-    def p_c1(self,p):
+    def p_c1(self, p):
         """C : leia '(' var ')' ';'"""
         p[0] = {'op': 'attrib', 'args': [{'var': p[1]}, p[3]]}
 
-    def p_c2(self,p):
-        """ C : var atribui E """
+    def p_c2(self, p):
+        """ C : var atribui E ';' """
         p[0] = {"op": "atribui", "args": [p[1], p[3]]}
+
+    def p_c3(self, p):
+        """ C : para var de E ate E  '{' code '}' """
+
 
     def p_elist0(self, p):
         """ e_list : E
                    | string """
         p[0] = [p[1]]
 
-    def p_elist1(self, p):
+    def p_elist(self, p):
         """ e_list : e_list ',' E
                    | e_list ',' string """
         p[0] = p[1]
@@ -65,8 +73,12 @@ class LogicGrammar:
         """N : E '+' E
              | E '-' E
              | E '*' E
-             | E '/' E """
+             | E '/' E"""
         p[0] = {"op": p[2], "args": [p[1], p[3]]}
+
+    def p_n3(self, p):
+        """N : cos '(' E ')'"""
+        p[0] = {"op": p[1], "args": [p[3]]}
 
     def p_b0(self,p):
         """B : F"""
@@ -117,20 +129,41 @@ class LogicGrammar:
             p[0].append(p[3])
 
     def p_E0(self, p):
+        """ E : var """
+        p[0] = {'var': p[1]}
+
+    def p_E1(self, p):
         """E : B
              | N
-             | var
+             | string
              | '(' E ')' """
         if len(p) == 2:
             p[0] = p[1]
         else:
             p[0] = p[2]
 
-    def p_E1(self, p):
+    def p_E2(self, p):
         """ E : var '(' arg_list ')'
               | var '(' ')' """
-        arg_list = [] if p[3] == ')' else p[3]
-        p[0] = {"op": "call", "args": [{"var": p[1]}, {"argList": arg_list}]}
+        p[0] = {"op": "call",
+               "args": [],
+               "data": [p[1], [] if p[3] == ")" else p[3]]}
+
+    def p_var_list(self, p):
+        """ var_list : var
+                     | var_list ',' var """
+        if len(p) == 2:
+            p[0] = [p[1]]
+        else:
+            p[0] = p[1]
+            p[0].append(p[3])
+
+    #
+
+    def p_args(self, p):
+        """ args :
+                 | var_list """
+        p[0] = p[1] if len(p) == 2 else []
 
     def __init__(self):
         self.lexer = LogicLexer()
