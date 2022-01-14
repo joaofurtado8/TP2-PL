@@ -1,3 +1,5 @@
+
+
 # logic_grammar.py
 import ply.yacc as pyacc
 from pprint import PrettyPrinter
@@ -38,7 +40,7 @@ class LogicGrammar:
              | C"""
         p[0] = p[1]
 
-    def p_c0(self,p):
+    def p_c0(self, p):
         """C : escreva '(' e_list ')' ';'"""
         p[0] = {'op': p[1], 'args': p[3]}
 
@@ -50,9 +52,24 @@ class LogicGrammar:
         """ C : var atribui E ';' """
         p[0] = {"op": "atribui", "args": [p[1], p[3]]}
 
-    def p_c3(self, p):
-        """ C : para var de E ate E  '{' code '}' """
+    #def p_c3(self, p):
+    #    """ C : para var de E ate E  '{' code '}' """
 
+    def p_c4(self,p):
+        """C : inteiro ':' code ';'"""
+        p[0] = int(p[3])
+
+    def p_c5(self,p):
+        """C : real ':' var ';'"""
+        p[0] = float(p[3])
+
+    def p_c6(self,p):
+        """C : logico ':' var ';'"""
+        p[0] = bool(p[3])
+
+    def p_c7(self,p):
+        """C : caracter ':' var ';'"""
+        p[0] = str(p[3])
 
     def p_elist0(self, p):
         """ e_list : E
@@ -80,11 +97,15 @@ class LogicGrammar:
         """N : cos '(' E ')'"""
         p[0] = {"op": p[1], "args": [p[3]]}
 
-    def p_b0(self,p):
+    def p_n4(self, p):
+        """N : sen '(' E ')'"""
+        p[0] = {"op": p[1], "args": [p[3]]}
+
+    def p_b0(self, p):
         """B : F"""
         p[0] = p[1]
 
-    def p_b1(self,p):
+    def p_b1(self, p):
         """B : E e E
              | E ou E"""
         p[0] = {"op": p[2], "args": [p[1], p[3]]}
@@ -146,8 +167,8 @@ class LogicGrammar:
         """ E : var '(' arg_list ')'
               | var '(' ')' """
         p[0] = {"op": "call",
-               "args": [],
-               "data": [p[1], [] if p[3] == ")" else p[3]]}
+                "args": [],
+                "data": [p[1], [] if p[3] == ")" else p[3]]}
 
     def p_var_list(self, p):
         """ var_list : var
@@ -175,7 +196,4 @@ class LogicGrammar:
         pp = PrettyPrinter()
         pp.pprint(ans)  # debug rulez!
         return LogicEval.eval(ans)
-
-
-
 
