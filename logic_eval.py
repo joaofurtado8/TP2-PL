@@ -16,6 +16,8 @@ class LogicEval:
         "*": lambda args: args[0] * args[1],
         "/": lambda args: args[0] / args[1],
         "t": lambda args: args[0] ** args[1],
+        ">": lambda args: args[0] > args[1],
+        "<": lambda args: args[0] < args[1],
         "cos": lambda args:  math.cos(args[0]),
         "sen": lambda args:  math.sin(args[0]),
 

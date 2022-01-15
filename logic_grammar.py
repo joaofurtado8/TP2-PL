@@ -12,6 +12,7 @@ class LogicGrammar:
     precedence = (
         ("left", "ou"),
         ("left", "e"),
+        ("left", "<", ">"),
         ("left", "+", "-"),
         ("left", "*", "/", "cos")
     )
@@ -35,9 +36,21 @@ class LogicGrammar:
         p[0] = p[1]
         p[0].append(p[3])
 
-    def p_s0(self, p):
-        """S : E
-             | C"""
+    def p_s(self, p):
+        """S : C"""
+        p[0] = p[1]
+
+    def p_condicao(self, p):
+        """ condicao : se E entao c_list senao c_list fim_se """
+        p[0] = {
+            "op": "se",
+            "args": [p[2]],
+            "data": [p[4], p[6]]
+        }
+
+    def p_c10(self, p):
+        """ C : e
+              | condicao """
         p[0] = p[1]
 
     def p_c0(self, p):
@@ -55,20 +68,20 @@ class LogicGrammar:
     #def p_c3(self, p):
     #    """ C : para var de E ate E  '{' code '}' """
 
-    def p_c4(self,p):
-        """C : inteiro ':' code ';'"""
-        p[0] = int(p[3])
+    def p_a4(self, p):
+        """A : inteiro ':' var ';'"""
+        p[0] = (p[3])
 
-    def p_c5(self,p):
-        """C : real ':' var ';'"""
+    def p_a5(self, p):
+        """A : real ':' var ';'"""
         p[0] = float(p[3])
 
-    def p_c6(self,p):
-        """C : logico ':' var ';'"""
+    def p_a6(self, p):
+        """A : logico ':' var ';'"""
         p[0] = bool(p[3])
 
-    def p_c7(self,p):
-        """C : caracter ':' var ';'"""
+    def p_a7(self, p):
+        """A : caracter ':' var ';'"""
         p[0] = str(p[3])
 
     def p_elist0(self, p):
@@ -90,7 +103,9 @@ class LogicGrammar:
         """N : E '+' E
              | E '-' E
              | E '*' E
-             | E '/' E"""
+             | E '/' E
+             | E '<' E
+             | E '>' E"""
         p[0] = {"op": p[2], "args": [p[1], p[3]]}
 
     def p_n3(self, p):
@@ -150,14 +165,15 @@ class LogicGrammar:
             p[0].append(p[3])
 
     def p_E0(self, p):
-        """ E : var """
+        """ E : var"""
         p[0] = {'var': p[1]}
 
     def p_E1(self, p):
         """E : B
              | N
              | string
-             | '(' E ')' """
+             | '(' E ')'
+             """
         if len(p) == 2:
             p[0] = p[1]
         else:
@@ -179,7 +195,14 @@ class LogicGrammar:
             p[0] = p[1]
             p[0].append(p[3])
 
-    #
+    def p_c_list(self, p):
+        """ c_list : C
+                     | c_list ';' C """
+        if len(p) == 2:
+            p[0] = [p[1]]
+        else:
+            p[0] = p[1]
+            p[0].append(p[3])
 
     def p_args(self, p):
         """ args :

@@ -6,9 +6,9 @@ class LogicLexer:
 
     keywords = ()
     tokens = ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico",
-                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "Inicio", "Fim", "cos","sen")
+                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "Inicio", "Fim", "cos","sen","se", "fim_se", "entao", "senao")
 
-    literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#', ':']
+    literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#', ':', '>', '<']
     t_ignore = " \t\n"
 
     def t_comment(self, t):
@@ -25,7 +25,7 @@ class LogicLexer:
         return t
 
     def t_str(self, t):
-        r"não|verdadeiro|falso|e(screva)?|ou|for|Inicio|Fim|cos|atribui|sen"
+        r"não|verdadeiro|falso|e(screva)?|ou|for|Inicio|Fim|cos|atribui|sen|inteiro|se"
         t.type = t.value
         return t
 

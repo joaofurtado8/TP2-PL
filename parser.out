@@ -10,94 +10,109 @@ Rule 0     S' -> axioma
 Rule 1     axioma -> Inicio code Fim
 Rule 2     code -> S
 Rule 3     code -> code ; S
-Rule 4     S -> E
-Rule 5     S -> C
-Rule 6     C -> escreva ( e_list ) ;
-Rule 7     C -> leia ( var ) ;
-Rule 8     C -> var atribui E ;
-Rule 9     C -> inteiro : code ;
-Rule 10    C -> real : var ;
-Rule 11    C -> logico : var ;
-Rule 12    C -> caracter : var ;
-Rule 13    e_list -> E
-Rule 14    e_list -> string
-Rule 15    e_list -> e_list , E
-Rule 16    e_list -> e_list , string
-Rule 17    N -> nr
-Rule 18    N -> E + E
-Rule 19    N -> E - E
-Rule 20    N -> E * E
-Rule 21    N -> E / E
-Rule 22    N -> cos ( E )
-Rule 23    N -> sen ( E )
-Rule 24    B -> F
-Rule 25    B -> E e E
-Rule 26    B -> E ou E
-Rule 27    F -> verdadeiro
-Rule 28    F -> falso
-Rule 29    F -> nao F
-Rule 30    F -> nao var
-Rule 31    arg_list -> E
-Rule 32    arg_list -> arg_list , E
-Rule 33    E -> var
-Rule 34    E -> B
-Rule 35    E -> N
-Rule 36    E -> string
-Rule 37    E -> ( E )
-Rule 38    E -> var ( arg_list )
-Rule 39    E -> var ( )
-Rule 40    var_list -> var
-Rule 41    var_list -> var_list , var
-Rule 42    args -> <empty>
-Rule 43    args -> var_list
+Rule 4     S -> C
+Rule 5     condicao -> se E entao c_list senao c_list fim_se
+Rule 6     C -> e
+Rule 7     C -> condicao
+Rule 8     C -> escreva ( e_list ) ;
+Rule 9     C -> leia ( var ) ;
+Rule 10    C -> var atribui E ;
+Rule 11    A -> inteiro : var ;
+Rule 12    A -> real : var ;
+Rule 13    A -> logico : var ;
+Rule 14    A -> caracter : var ;
+Rule 15    e_list -> E
+Rule 16    e_list -> string
+Rule 17    e_list -> e_list , E
+Rule 18    e_list -> e_list , string
+Rule 19    N -> nr
+Rule 20    N -> E + E
+Rule 21    N -> E - E
+Rule 22    N -> E * E
+Rule 23    N -> E / E
+Rule 24    N -> E < E
+Rule 25    N -> E > E
+Rule 26    N -> cos ( E )
+Rule 27    N -> sen ( E )
+Rule 28    B -> F
+Rule 29    B -> E e E
+Rule 30    B -> E ou E
+Rule 31    F -> verdadeiro
+Rule 32    F -> falso
+Rule 33    F -> nao F
+Rule 34    F -> nao var
+Rule 35    arg_list -> E
+Rule 36    arg_list -> arg_list , E
+Rule 37    E -> var
+Rule 38    E -> B
+Rule 39    E -> N
+Rule 40    E -> string
+Rule 41    E -> ( E )
+Rule 42    E -> var ( arg_list )
+Rule 43    E -> var ( )
+Rule 44    var_list -> var
+Rule 45    var_list -> var_list , var
+Rule 46    c_list -> C
+Rule 47    c_list -> c_list ; C
+Rule 48    args -> <empty>
+Rule 49    args -> var_list
 
 Terminals, with rules where they appear
 
-(                    : 6 7 22 23 37 38 39
-)                    : 6 7 22 23 37 38 39
-*                    : 20
-+                    : 18
-,                    : 15 16 32 41
--                    : 19
-/                    : 21
-:                    : 9 10 11 12
-;                    : 3 6 7 8 9 10 11 12
+(                    : 8 9 26 27 41 42 43
+)                    : 8 9 26 27 41 42 43
+*                    : 22
++                    : 20
+,                    : 17 18 36 45
+-                    : 21
+/                    : 23
+:                    : 11 12 13 14
+;                    : 3 8 9 10 11 12 13 14 47
+<                    : 24
+>                    : 25
 Fim                  : 1
 Inicio               : 1
-atribui              : 8
-caracter             : 12
-cos                  : 22
-e                    : 25
+atribui              : 10
+caracter             : 14
+cos                  : 26
+e                    : 6 29
 ellipsis             : 
+entao                : 5
 error                : 
-escreva              : 6
-falso                : 28
-inteiro              : 9
-leia                 : 7
-logico               : 11
-nao                  : 29 30
-nr                   : 17
-ou                   : 26
-real                 : 10
-sen                  : 23
-string               : 14 16 36
-var                  : 7 8 10 11 12 30 33 38 39 40 41
-verdadeiro           : 27
+escreva              : 8
+falso                : 32
+fim_se               : 5
+inteiro              : 11
+leia                 : 9
+logico               : 13
+nao                  : 33 34
+nr                   : 19
+ou                   : 30
+real                 : 12
+se                   : 5
+sen                  : 27
+senao                : 5
+string               : 16 18 40
+var                  : 9 10 11 12 13 14 34 37 42 43 44 45
+verdadeiro           : 31
 
 Nonterminals, with rules where they appear
 
-B                    : 34
-C                    : 5
-E                    : 4 8 13 15 18 18 19 19 20 20 21 21 22 23 25 25 26 26 31 32 37
-F                    : 24 29
-N                    : 35
+A                    : 
+B                    : 38
+C                    : 4 46 47
+E                    : 5 10 15 17 20 20 21 21 22 22 23 23 24 24 25 25 26 27 29 29 30 30 35 36 41
+F                    : 28 33
+N                    : 39
 S                    : 2 3
-arg_list             : 32 38
+arg_list             : 36 42
 args                 : 
 axioma               : 0
-code                 : 1 3 9
-e_list               : 6 15 16
-var_list             : 41 43
+c_list               : 5 5 47
+code                 : 1 3
+condicao             : 7
+e_list               : 8 17 18
+var_list             : 45 49
 
 Parsing method: LALR
 
@@ -121,68 +136,32 @@ state 2
     (1) axioma -> Inicio . code Fim
     (2) code -> . S
     (3) code -> . code ; S
-    (4) S -> . E
-    (5) S -> . C
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (6) C -> . escreva ( e_list ) ;
-    (7) C -> . leia ( var ) ;
-    (8) C -> . var atribui E ;
-    (9) C -> . inteiro : code ;
-    (10) C -> . real : var ;
-    (11) C -> . logico : var ;
-    (12) C -> . caracter : var ;
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (4) S -> . C
+    (6) C -> . e
+    (7) C -> . condicao
+    (8) C -> . escreva ( e_list ) ;
+    (9) C -> . leia ( var ) ;
+    (10) C -> . var atribui E ;
+    (5) condicao -> . se E entao c_list senao c_list fim_se
 
-    var             shift and go to state 7
-    string          shift and go to state 10
-    (               shift and go to state 11
-    escreva         shift and go to state 12
-    leia            shift and go to state 13
-    inteiro         shift and go to state 14
-    real            shift and go to state 15
-    logico          shift and go to state 16
-    caracter        shift and go to state 17
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    e               shift and go to state 6
+    escreva         shift and go to state 8
+    leia            shift and go to state 9
+    var             shift and go to state 10
+    se              shift and go to state 11
 
     code                           shift and go to state 3
     S                              shift and go to state 4
-    E                              shift and go to state 5
-    C                              shift and go to state 6
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
+    C                              shift and go to state 5
+    condicao                       shift and go to state 7
 
 state 3
 
     (1) axioma -> Inicio code . Fim
     (3) code -> code . ; S
 
-    Fim             shift and go to state 25
-    ;               shift and go to state 26
+    Fim             shift and go to state 12
+    ;               shift and go to state 13
 
 
 state 4
@@ -195,948 +174,462 @@ state 4
 
 state 5
 
-    (4) S -> E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (4) S -> C .
 
-    Fim             reduce using rule 4 (S -> E .)
-    ;               reduce using rule 4 (S -> E .)
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    Fim             reduce using rule 4 (S -> C .)
+    ;               reduce using rule 4 (S -> C .)
 
 
 state 6
 
-    (5) S -> C .
+    (6) C -> e .
 
-    Fim             reduce using rule 5 (S -> C .)
-    ;               reduce using rule 5 (S -> C .)
+    Fim             reduce using rule 6 (C -> e .)
+    ;               reduce using rule 6 (C -> e .)
+    senao           reduce using rule 6 (C -> e .)
+    fim_se          reduce using rule 6 (C -> e .)
 
 
 state 7
 
-    (33) E -> var .
-    (38) E -> var . ( arg_list )
-    (39) E -> var . ( )
-    (8) C -> var . atribui E ;
+    (7) C -> condicao .
 
-    e               reduce using rule 33 (E -> var .)
-    ou              reduce using rule 33 (E -> var .)
-    +               reduce using rule 33 (E -> var .)
-    -               reduce using rule 33 (E -> var .)
-    *               reduce using rule 33 (E -> var .)
-    /               reduce using rule 33 (E -> var .)
-    Fim             reduce using rule 33 (E -> var .)
-    ;               reduce using rule 33 (E -> var .)
-    (               shift and go to state 33
-    atribui         shift and go to state 34
+    Fim             reduce using rule 7 (C -> condicao .)
+    ;               reduce using rule 7 (C -> condicao .)
+    senao           reduce using rule 7 (C -> condicao .)
+    fim_se          reduce using rule 7 (C -> condicao .)
 
 
 state 8
 
-    (34) E -> B .
+    (8) C -> escreva . ( e_list ) ;
 
-    e               reduce using rule 34 (E -> B .)
-    ou              reduce using rule 34 (E -> B .)
-    +               reduce using rule 34 (E -> B .)
-    -               reduce using rule 34 (E -> B .)
-    *               reduce using rule 34 (E -> B .)
-    /               reduce using rule 34 (E -> B .)
-    Fim             reduce using rule 34 (E -> B .)
-    ;               reduce using rule 34 (E -> B .)
-    )               reduce using rule 34 (E -> B .)
-    ,               reduce using rule 34 (E -> B .)
+    (               shift and go to state 14
 
 
 state 9
 
-    (35) E -> N .
+    (9) C -> leia . ( var ) ;
 
-    e               reduce using rule 35 (E -> N .)
-    ou              reduce using rule 35 (E -> N .)
-    +               reduce using rule 35 (E -> N .)
-    -               reduce using rule 35 (E -> N .)
-    *               reduce using rule 35 (E -> N .)
-    /               reduce using rule 35 (E -> N .)
-    Fim             reduce using rule 35 (E -> N .)
-    ;               reduce using rule 35 (E -> N .)
-    )               reduce using rule 35 (E -> N .)
-    ,               reduce using rule 35 (E -> N .)
+    (               shift and go to state 15
 
 
 state 10
 
-    (36) E -> string .
+    (10) C -> var . atribui E ;
 
-    e               reduce using rule 36 (E -> string .)
-    ou              reduce using rule 36 (E -> string .)
-    +               reduce using rule 36 (E -> string .)
-    -               reduce using rule 36 (E -> string .)
-    *               reduce using rule 36 (E -> string .)
-    /               reduce using rule 36 (E -> string .)
-    Fim             reduce using rule 36 (E -> string .)
-    ;               reduce using rule 36 (E -> string .)
-    )               reduce using rule 36 (E -> string .)
-    ,               reduce using rule 36 (E -> string .)
+    atribui         shift and go to state 16
 
 
 state 11
 
-    (37) E -> ( . E )
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (5) condicao -> se . E entao c_list senao c_list fim_se
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
 
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
 
-    E                              shift and go to state 35
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
+    E                              shift and go to state 17
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
 
 state 12
-
-    (6) C -> escreva . ( e_list ) ;
-
-    (               shift and go to state 37
-
-
-state 13
-
-    (7) C -> leia . ( var ) ;
-
-    (               shift and go to state 38
-
-
-state 14
-
-    (9) C -> inteiro . : code ;
-
-    :               shift and go to state 39
-
-
-state 15
-
-    (10) C -> real . : var ;
-
-    :               shift and go to state 40
-
-
-state 16
-
-    (11) C -> logico . : var ;
-
-    :               shift and go to state 41
-
-
-state 17
-
-    (12) C -> caracter . : var ;
-
-    :               shift and go to state 42
-
-
-state 18
-
-    (24) B -> F .
-
-    e               reduce using rule 24 (B -> F .)
-    ou              reduce using rule 24 (B -> F .)
-    +               reduce using rule 24 (B -> F .)
-    -               reduce using rule 24 (B -> F .)
-    *               reduce using rule 24 (B -> F .)
-    /               reduce using rule 24 (B -> F .)
-    Fim             reduce using rule 24 (B -> F .)
-    ;               reduce using rule 24 (B -> F .)
-    )               reduce using rule 24 (B -> F .)
-    ,               reduce using rule 24 (B -> F .)
-
-
-state 19
-
-    (17) N -> nr .
-
-    e               reduce using rule 17 (N -> nr .)
-    ou              reduce using rule 17 (N -> nr .)
-    +               reduce using rule 17 (N -> nr .)
-    -               reduce using rule 17 (N -> nr .)
-    *               reduce using rule 17 (N -> nr .)
-    /               reduce using rule 17 (N -> nr .)
-    Fim             reduce using rule 17 (N -> nr .)
-    ;               reduce using rule 17 (N -> nr .)
-    )               reduce using rule 17 (N -> nr .)
-    ,               reduce using rule 17 (N -> nr .)
-
-
-state 20
-
-    (22) N -> cos . ( E )
-
-    (               shift and go to state 43
-
-
-state 21
-
-    (23) N -> sen . ( E )
-
-    (               shift and go to state 44
-
-
-state 22
-
-    (27) F -> verdadeiro .
-
-    e               reduce using rule 27 (F -> verdadeiro .)
-    ou              reduce using rule 27 (F -> verdadeiro .)
-    +               reduce using rule 27 (F -> verdadeiro .)
-    -               reduce using rule 27 (F -> verdadeiro .)
-    *               reduce using rule 27 (F -> verdadeiro .)
-    /               reduce using rule 27 (F -> verdadeiro .)
-    Fim             reduce using rule 27 (F -> verdadeiro .)
-    ;               reduce using rule 27 (F -> verdadeiro .)
-    )               reduce using rule 27 (F -> verdadeiro .)
-    ,               reduce using rule 27 (F -> verdadeiro .)
-
-
-state 23
-
-    (28) F -> falso .
-
-    e               reduce using rule 28 (F -> falso .)
-    ou              reduce using rule 28 (F -> falso .)
-    +               reduce using rule 28 (F -> falso .)
-    -               reduce using rule 28 (F -> falso .)
-    *               reduce using rule 28 (F -> falso .)
-    /               reduce using rule 28 (F -> falso .)
-    Fim             reduce using rule 28 (F -> falso .)
-    ;               reduce using rule 28 (F -> falso .)
-    )               reduce using rule 28 (F -> falso .)
-    ,               reduce using rule 28 (F -> falso .)
-
-
-state 24
-
-    (29) F -> nao . F
-    (30) F -> nao . var
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 46
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    F                              shift and go to state 45
-
-state 25
 
     (1) axioma -> Inicio code Fim .
 
     $end            reduce using rule 1 (axioma -> Inicio code Fim .)
 
 
-state 26
+state 13
 
     (3) code -> code ; . S
-    (4) S -> . E
-    (5) S -> . C
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (6) C -> . escreva ( e_list ) ;
-    (7) C -> . leia ( var ) ;
-    (8) C -> . var atribui E ;
-    (9) C -> . inteiro : code ;
-    (10) C -> . real : var ;
-    (11) C -> . logico : var ;
-    (12) C -> . caracter : var ;
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (4) S -> . C
+    (6) C -> . e
+    (7) C -> . condicao
+    (8) C -> . escreva ( e_list ) ;
+    (9) C -> . leia ( var ) ;
+    (10) C -> . var atribui E ;
+    (5) condicao -> . se E entao c_list senao c_list fim_se
 
-    var             shift and go to state 7
-    string          shift and go to state 10
-    (               shift and go to state 11
-    escreva         shift and go to state 12
-    leia            shift and go to state 13
-    inteiro         shift and go to state 14
-    real            shift and go to state 15
-    logico          shift and go to state 16
-    caracter        shift and go to state 17
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    e               shift and go to state 6
+    escreva         shift and go to state 8
+    leia            shift and go to state 9
+    var             shift and go to state 10
+    se              shift and go to state 11
 
-    S                              shift and go to state 47
-    E                              shift and go to state 5
-    C                              shift and go to state 6
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
+    S                              shift and go to state 30
+    C                              shift and go to state 5
+    condicao                       shift and go to state 7
+
+state 14
+
+    (8) C -> escreva ( . e_list ) ;
+    (15) e_list -> . E
+    (16) e_list -> . string
+    (17) e_list -> . e_list , E
+    (18) e_list -> . e_list , string
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    string          shift and go to state 33
+    var             shift and go to state 18
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    e_list                         shift and go to state 31
+    E                              shift and go to state 32
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 15
+
+    (9) C -> leia ( . var ) ;
+
+    var             shift and go to state 34
+
+
+state 16
+
+    (10) C -> var atribui . E ;
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 35
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 17
+
+    (5) condicao -> se E . entao c_list senao c_list fim_se
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
+
+    entao           shift and go to state 36
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
+
+
+state 18
+
+    (37) E -> var .
+    (42) E -> var . ( arg_list )
+    (43) E -> var . ( )
+
+    entao           reduce using rule 37 (E -> var .)
+    e               reduce using rule 37 (E -> var .)
+    ou              reduce using rule 37 (E -> var .)
+    +               reduce using rule 37 (E -> var .)
+    -               reduce using rule 37 (E -> var .)
+    *               reduce using rule 37 (E -> var .)
+    /               reduce using rule 37 (E -> var .)
+    <               reduce using rule 37 (E -> var .)
+    >               reduce using rule 37 (E -> var .)
+    )               reduce using rule 37 (E -> var .)
+    ,               reduce using rule 37 (E -> var .)
+    ;               reduce using rule 37 (E -> var .)
+    (               shift and go to state 45
+
+
+state 19
+
+    (38) E -> B .
+
+    entao           reduce using rule 38 (E -> B .)
+    e               reduce using rule 38 (E -> B .)
+    ou              reduce using rule 38 (E -> B .)
+    +               reduce using rule 38 (E -> B .)
+    -               reduce using rule 38 (E -> B .)
+    *               reduce using rule 38 (E -> B .)
+    /               reduce using rule 38 (E -> B .)
+    <               reduce using rule 38 (E -> B .)
+    >               reduce using rule 38 (E -> B .)
+    )               reduce using rule 38 (E -> B .)
+    ,               reduce using rule 38 (E -> B .)
+    ;               reduce using rule 38 (E -> B .)
+
+
+state 20
+
+    (39) E -> N .
+
+    entao           reduce using rule 39 (E -> N .)
+    e               reduce using rule 39 (E -> N .)
+    ou              reduce using rule 39 (E -> N .)
+    +               reduce using rule 39 (E -> N .)
+    -               reduce using rule 39 (E -> N .)
+    *               reduce using rule 39 (E -> N .)
+    /               reduce using rule 39 (E -> N .)
+    <               reduce using rule 39 (E -> N .)
+    >               reduce using rule 39 (E -> N .)
+    )               reduce using rule 39 (E -> N .)
+    ,               reduce using rule 39 (E -> N .)
+    ;               reduce using rule 39 (E -> N .)
+
+
+state 21
+
+    (40) E -> string .
+
+    entao           reduce using rule 40 (E -> string .)
+    e               reduce using rule 40 (E -> string .)
+    ou              reduce using rule 40 (E -> string .)
+    +               reduce using rule 40 (E -> string .)
+    -               reduce using rule 40 (E -> string .)
+    *               reduce using rule 40 (E -> string .)
+    /               reduce using rule 40 (E -> string .)
+    <               reduce using rule 40 (E -> string .)
+    >               reduce using rule 40 (E -> string .)
+    ;               reduce using rule 40 (E -> string .)
+    )               reduce using rule 40 (E -> string .)
+    ,               reduce using rule 40 (E -> string .)
+
+
+state 22
+
+    (41) E -> ( . E )
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 46
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 23
+
+    (28) B -> F .
+
+    entao           reduce using rule 28 (B -> F .)
+    e               reduce using rule 28 (B -> F .)
+    ou              reduce using rule 28 (B -> F .)
+    +               reduce using rule 28 (B -> F .)
+    -               reduce using rule 28 (B -> F .)
+    *               reduce using rule 28 (B -> F .)
+    /               reduce using rule 28 (B -> F .)
+    <               reduce using rule 28 (B -> F .)
+    >               reduce using rule 28 (B -> F .)
+    )               reduce using rule 28 (B -> F .)
+    ,               reduce using rule 28 (B -> F .)
+    ;               reduce using rule 28 (B -> F .)
+
+
+state 24
+
+    (19) N -> nr .
+
+    entao           reduce using rule 19 (N -> nr .)
+    e               reduce using rule 19 (N -> nr .)
+    ou              reduce using rule 19 (N -> nr .)
+    +               reduce using rule 19 (N -> nr .)
+    -               reduce using rule 19 (N -> nr .)
+    *               reduce using rule 19 (N -> nr .)
+    /               reduce using rule 19 (N -> nr .)
+    <               reduce using rule 19 (N -> nr .)
+    >               reduce using rule 19 (N -> nr .)
+    )               reduce using rule 19 (N -> nr .)
+    ,               reduce using rule 19 (N -> nr .)
+    ;               reduce using rule 19 (N -> nr .)
+
+
+state 25
+
+    (26) N -> cos . ( E )
+
+    (               shift and go to state 47
+
+
+state 26
+
+    (27) N -> sen . ( E )
+
+    (               shift and go to state 48
+
 
 state 27
 
-    (25) B -> E e . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (31) F -> verdadeiro .
 
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    entao           reduce using rule 31 (F -> verdadeiro .)
+    e               reduce using rule 31 (F -> verdadeiro .)
+    ou              reduce using rule 31 (F -> verdadeiro .)
+    +               reduce using rule 31 (F -> verdadeiro .)
+    -               reduce using rule 31 (F -> verdadeiro .)
+    *               reduce using rule 31 (F -> verdadeiro .)
+    /               reduce using rule 31 (F -> verdadeiro .)
+    <               reduce using rule 31 (F -> verdadeiro .)
+    >               reduce using rule 31 (F -> verdadeiro .)
+    )               reduce using rule 31 (F -> verdadeiro .)
+    ,               reduce using rule 31 (F -> verdadeiro .)
+    ;               reduce using rule 31 (F -> verdadeiro .)
 
-    E                              shift and go to state 48
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
 
 state 28
 
-    (26) B -> E ou . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (32) F -> falso .
 
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    entao           reduce using rule 32 (F -> falso .)
+    e               reduce using rule 32 (F -> falso .)
+    ou              reduce using rule 32 (F -> falso .)
+    +               reduce using rule 32 (F -> falso .)
+    -               reduce using rule 32 (F -> falso .)
+    *               reduce using rule 32 (F -> falso .)
+    /               reduce using rule 32 (F -> falso .)
+    <               reduce using rule 32 (F -> falso .)
+    >               reduce using rule 32 (F -> falso .)
+    )               reduce using rule 32 (F -> falso .)
+    ,               reduce using rule 32 (F -> falso .)
+    ;               reduce using rule 32 (F -> falso .)
 
-    E                              shift and go to state 49
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
 
 state 29
 
-    (18) N -> E + . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (33) F -> nao . F
+    (34) F -> nao . var
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
 
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    var             shift and go to state 50
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
 
-    E                              shift and go to state 50
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
+    F                              shift and go to state 49
 
 state 30
-
-    (19) N -> E - . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    E                              shift and go to state 51
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 31
-
-    (20) N -> E * . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    E                              shift and go to state 52
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 32
-
-    (21) N -> E / . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    E                              shift and go to state 53
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 33
-
-    (38) E -> var ( . arg_list )
-    (39) E -> var ( . )
-    (31) arg_list -> . E
-    (32) arg_list -> . arg_list , E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    )               shift and go to state 55
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    arg_list                       shift and go to state 54
-    E                              shift and go to state 56
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 34
-
-    (8) C -> var atribui . E ;
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    E                              shift and go to state 57
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 35
-
-    (37) E -> ( E . )
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
-
-    )               shift and go to state 58
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
-
-
-state 36
-
-    (33) E -> var .
-    (38) E -> var . ( arg_list )
-    (39) E -> var . ( )
-
-    )               reduce using rule 33 (E -> var .)
-    e               reduce using rule 33 (E -> var .)
-    ou              reduce using rule 33 (E -> var .)
-    +               reduce using rule 33 (E -> var .)
-    -               reduce using rule 33 (E -> var .)
-    *               reduce using rule 33 (E -> var .)
-    /               reduce using rule 33 (E -> var .)
-    Fim             reduce using rule 33 (E -> var .)
-    ;               reduce using rule 33 (E -> var .)
-    ,               reduce using rule 33 (E -> var .)
-    (               shift and go to state 33
-
-
-state 37
-
-    (6) C -> escreva ( . e_list ) ;
-    (13) e_list -> . E
-    (14) e_list -> . string
-    (15) e_list -> . e_list , E
-    (16) e_list -> . e_list , string
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    string          shift and go to state 61
-    var             shift and go to state 36
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    e_list                         shift and go to state 59
-    E                              shift and go to state 60
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 38
-
-    (7) C -> leia ( . var ) ;
-
-    var             shift and go to state 62
-
-
-state 39
-
-    (9) C -> inteiro : . code ;
-    (2) code -> . S
-    (3) code -> . code ; S
-    (4) S -> . E
-    (5) S -> . C
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (6) C -> . escreva ( e_list ) ;
-    (7) C -> . leia ( var ) ;
-    (8) C -> . var atribui E ;
-    (9) C -> . inteiro : code ;
-    (10) C -> . real : var ;
-    (11) C -> . logico : var ;
-    (12) C -> . caracter : var ;
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 7
-    string          shift and go to state 10
-    (               shift and go to state 11
-    escreva         shift and go to state 12
-    leia            shift and go to state 13
-    inteiro         shift and go to state 14
-    real            shift and go to state 15
-    logico          shift and go to state 16
-    caracter        shift and go to state 17
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    code                           shift and go to state 63
-    S                              shift and go to state 4
-    E                              shift and go to state 5
-    C                              shift and go to state 6
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 40
-
-    (10) C -> real : . var ;
-
-    var             shift and go to state 64
-
-
-state 41
-
-    (11) C -> logico : . var ;
-
-    var             shift and go to state 65
-
-
-state 42
-
-    (12) C -> caracter : . var ;
-
-    var             shift and go to state 66
-
-
-state 43
-
-    (22) N -> cos ( . E )
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    E                              shift and go to state 67
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 44
-
-    (23) N -> sen ( . E )
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
-
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
-
-    E                              shift and go to state 68
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
-
-state 45
-
-    (29) F -> nao F .
-
-    e               reduce using rule 29 (F -> nao F .)
-    ou              reduce using rule 29 (F -> nao F .)
-    +               reduce using rule 29 (F -> nao F .)
-    -               reduce using rule 29 (F -> nao F .)
-    *               reduce using rule 29 (F -> nao F .)
-    /               reduce using rule 29 (F -> nao F .)
-    Fim             reduce using rule 29 (F -> nao F .)
-    ;               reduce using rule 29 (F -> nao F .)
-    )               reduce using rule 29 (F -> nao F .)
-    ,               reduce using rule 29 (F -> nao F .)
-
-
-state 46
-
-    (30) F -> nao var .
-
-    e               reduce using rule 30 (F -> nao var .)
-    ou              reduce using rule 30 (F -> nao var .)
-    +               reduce using rule 30 (F -> nao var .)
-    -               reduce using rule 30 (F -> nao var .)
-    *               reduce using rule 30 (F -> nao var .)
-    /               reduce using rule 30 (F -> nao var .)
-    Fim             reduce using rule 30 (F -> nao var .)
-    ;               reduce using rule 30 (F -> nao var .)
-    )               reduce using rule 30 (F -> nao var .)
-    ,               reduce using rule 30 (F -> nao var .)
-
-
-state 47
 
     (3) code -> code ; S .
 
@@ -1144,698 +637,1378 @@ state 47
     ;               reduce using rule 3 (code -> code ; S .)
 
 
+state 31
+
+    (8) C -> escreva ( e_list . ) ;
+    (17) e_list -> e_list . , E
+    (18) e_list -> e_list . , string
+
+    )               shift and go to state 51
+    ,               shift and go to state 52
+
+
+state 32
+
+    (15) e_list -> E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
+
+    )               reduce using rule 15 (e_list -> E .)
+    ,               reduce using rule 15 (e_list -> E .)
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
+
+
+state 33
+
+    (16) e_list -> string .
+    (40) E -> string .
+
+  ! reduce/reduce conflict for ) resolved using rule 16 (e_list -> string .)
+  ! reduce/reduce conflict for , resolved using rule 16 (e_list -> string .)
+    )               reduce using rule 16 (e_list -> string .)
+    ,               reduce using rule 16 (e_list -> string .)
+    e               reduce using rule 40 (E -> string .)
+    ou              reduce using rule 40 (E -> string .)
+    +               reduce using rule 40 (E -> string .)
+    -               reduce using rule 40 (E -> string .)
+    *               reduce using rule 40 (E -> string .)
+    /               reduce using rule 40 (E -> string .)
+    <               reduce using rule 40 (E -> string .)
+    >               reduce using rule 40 (E -> string .)
+
+  ! )               [ reduce using rule 40 (E -> string .) ]
+  ! ,               [ reduce using rule 40 (E -> string .) ]
+
+
+state 34
+
+    (9) C -> leia ( var . ) ;
+
+    )               shift and go to state 53
+
+
+state 35
+
+    (10) C -> var atribui E . ;
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
+
+    ;               shift and go to state 54
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
+
+
+state 36
+
+    (5) condicao -> se E entao . c_list senao c_list fim_se
+    (46) c_list -> . C
+    (47) c_list -> . c_list ; C
+    (6) C -> . e
+    (7) C -> . condicao
+    (8) C -> . escreva ( e_list ) ;
+    (9) C -> . leia ( var ) ;
+    (10) C -> . var atribui E ;
+    (5) condicao -> . se E entao c_list senao c_list fim_se
+
+    e               shift and go to state 6
+    escreva         shift and go to state 8
+    leia            shift and go to state 9
+    var             shift and go to state 10
+    se              shift and go to state 11
+
+    c_list                         shift and go to state 55
+    C                              shift and go to state 56
+    condicao                       shift and go to state 7
+
+state 37
+
+    (29) B -> E e . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 57
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 38
+
+    (30) B -> E ou . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 58
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 39
+
+    (20) N -> E + . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 59
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 40
+
+    (21) N -> E - . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 60
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 41
+
+    (22) N -> E * . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 61
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 42
+
+    (23) N -> E / . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 62
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 43
+
+    (24) N -> E < . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 63
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 44
+
+    (25) N -> E > . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 64
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 45
+
+    (42) E -> var ( . arg_list )
+    (43) E -> var ( . )
+    (35) arg_list -> . E
+    (36) arg_list -> . arg_list , E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    )               shift and go to state 66
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    arg_list                       shift and go to state 65
+    E                              shift and go to state 67
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
+state 46
+
+    (41) E -> ( E . )
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
+
+    )               shift and go to state 68
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
+
+
+state 47
+
+    (26) N -> cos ( . E )
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
+
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
+
+    E                              shift and go to state 69
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
+
 state 48
 
-    (25) B -> E e E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (27) N -> sen ( . E )
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
 
-    e               reduce using rule 25 (B -> E e E .)
-    ou              reduce using rule 25 (B -> E e E .)
-    Fim             reduce using rule 25 (B -> E e E .)
-    ;               reduce using rule 25 (B -> E e E .)
-    )               reduce using rule 25 (B -> E e E .)
-    ,               reduce using rule 25 (B -> E e E .)
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
 
-  ! +               [ reduce using rule 25 (B -> E e E .) ]
-  ! -               [ reduce using rule 25 (B -> E e E .) ]
-  ! *               [ reduce using rule 25 (B -> E e E .) ]
-  ! /               [ reduce using rule 25 (B -> E e E .) ]
-  ! e               [ shift and go to state 27 ]
-  ! ou              [ shift and go to state 28 ]
-
+    E                              shift and go to state 70
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
 
 state 49
 
-    (26) B -> E ou E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (33) F -> nao F .
 
-    ou              reduce using rule 26 (B -> E ou E .)
-    Fim             reduce using rule 26 (B -> E ou E .)
-    ;               reduce using rule 26 (B -> E ou E .)
-    )               reduce using rule 26 (B -> E ou E .)
-    ,               reduce using rule 26 (B -> E ou E .)
-    e               shift and go to state 27
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
-
-  ! e               [ reduce using rule 26 (B -> E ou E .) ]
-  ! +               [ reduce using rule 26 (B -> E ou E .) ]
-  ! -               [ reduce using rule 26 (B -> E ou E .) ]
-  ! *               [ reduce using rule 26 (B -> E ou E .) ]
-  ! /               [ reduce using rule 26 (B -> E ou E .) ]
-  ! ou              [ shift and go to state 28 ]
+    entao           reduce using rule 33 (F -> nao F .)
+    e               reduce using rule 33 (F -> nao F .)
+    ou              reduce using rule 33 (F -> nao F .)
+    +               reduce using rule 33 (F -> nao F .)
+    -               reduce using rule 33 (F -> nao F .)
+    *               reduce using rule 33 (F -> nao F .)
+    /               reduce using rule 33 (F -> nao F .)
+    <               reduce using rule 33 (F -> nao F .)
+    >               reduce using rule 33 (F -> nao F .)
+    )               reduce using rule 33 (F -> nao F .)
+    ,               reduce using rule 33 (F -> nao F .)
+    ;               reduce using rule 33 (F -> nao F .)
 
 
 state 50
 
-    (18) N -> E + E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (34) F -> nao var .
 
-    e               reduce using rule 18 (N -> E + E .)
-    ou              reduce using rule 18 (N -> E + E .)
-    +               reduce using rule 18 (N -> E + E .)
-    -               reduce using rule 18 (N -> E + E .)
-    Fim             reduce using rule 18 (N -> E + E .)
-    ;               reduce using rule 18 (N -> E + E .)
-    )               reduce using rule 18 (N -> E + E .)
-    ,               reduce using rule 18 (N -> E + E .)
-    *               shift and go to state 31
-    /               shift and go to state 32
-
-  ! *               [ reduce using rule 18 (N -> E + E .) ]
-  ! /               [ reduce using rule 18 (N -> E + E .) ]
-  ! e               [ shift and go to state 27 ]
-  ! ou              [ shift and go to state 28 ]
-  ! +               [ shift and go to state 29 ]
-  ! -               [ shift and go to state 30 ]
+    entao           reduce using rule 34 (F -> nao var .)
+    e               reduce using rule 34 (F -> nao var .)
+    ou              reduce using rule 34 (F -> nao var .)
+    +               reduce using rule 34 (F -> nao var .)
+    -               reduce using rule 34 (F -> nao var .)
+    *               reduce using rule 34 (F -> nao var .)
+    /               reduce using rule 34 (F -> nao var .)
+    <               reduce using rule 34 (F -> nao var .)
+    >               reduce using rule 34 (F -> nao var .)
+    )               reduce using rule 34 (F -> nao var .)
+    ,               reduce using rule 34 (F -> nao var .)
+    ;               reduce using rule 34 (F -> nao var .)
 
 
 state 51
 
-    (19) N -> E - E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (8) C -> escreva ( e_list ) . ;
 
-    e               reduce using rule 19 (N -> E - E .)
-    ou              reduce using rule 19 (N -> E - E .)
-    +               reduce using rule 19 (N -> E - E .)
-    -               reduce using rule 19 (N -> E - E .)
-    Fim             reduce using rule 19 (N -> E - E .)
-    ;               reduce using rule 19 (N -> E - E .)
-    )               reduce using rule 19 (N -> E - E .)
-    ,               reduce using rule 19 (N -> E - E .)
-    *               shift and go to state 31
-    /               shift and go to state 32
-
-  ! *               [ reduce using rule 19 (N -> E - E .) ]
-  ! /               [ reduce using rule 19 (N -> E - E .) ]
-  ! e               [ shift and go to state 27 ]
-  ! ou              [ shift and go to state 28 ]
-  ! +               [ shift and go to state 29 ]
-  ! -               [ shift and go to state 30 ]
+    ;               shift and go to state 71
 
 
 state 52
 
-    (20) N -> E * E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (17) e_list -> e_list , . E
+    (18) e_list -> e_list , . string
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
 
-    e               reduce using rule 20 (N -> E * E .)
-    ou              reduce using rule 20 (N -> E * E .)
-    +               reduce using rule 20 (N -> E * E .)
-    -               reduce using rule 20 (N -> E * E .)
-    *               reduce using rule 20 (N -> E * E .)
-    /               reduce using rule 20 (N -> E * E .)
-    Fim             reduce using rule 20 (N -> E * E .)
-    ;               reduce using rule 20 (N -> E * E .)
-    )               reduce using rule 20 (N -> E * E .)
-    ,               reduce using rule 20 (N -> E * E .)
+    string          shift and go to state 73
+    var             shift and go to state 18
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
 
-  ! e               [ shift and go to state 27 ]
-  ! ou              [ shift and go to state 28 ]
-  ! +               [ shift and go to state 29 ]
-  ! -               [ shift and go to state 30 ]
-  ! *               [ shift and go to state 31 ]
-  ! /               [ shift and go to state 32 ]
-
+    E                              shift and go to state 72
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
 
 state 53
 
-    (21) N -> E / E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (9) C -> leia ( var ) . ;
 
-    e               reduce using rule 21 (N -> E / E .)
-    ou              reduce using rule 21 (N -> E / E .)
-    +               reduce using rule 21 (N -> E / E .)
-    -               reduce using rule 21 (N -> E / E .)
-    *               reduce using rule 21 (N -> E / E .)
-    /               reduce using rule 21 (N -> E / E .)
-    Fim             reduce using rule 21 (N -> E / E .)
-    ;               reduce using rule 21 (N -> E / E .)
-    )               reduce using rule 21 (N -> E / E .)
-    ,               reduce using rule 21 (N -> E / E .)
-
-  ! e               [ shift and go to state 27 ]
-  ! ou              [ shift and go to state 28 ]
-  ! +               [ shift and go to state 29 ]
-  ! -               [ shift and go to state 30 ]
-  ! *               [ shift and go to state 31 ]
-  ! /               [ shift and go to state 32 ]
+    ;               shift and go to state 74
 
 
 state 54
 
-    (38) E -> var ( arg_list . )
-    (32) arg_list -> arg_list . , E
+    (10) C -> var atribui E ; .
 
-    )               shift and go to state 69
-    ,               shift and go to state 70
+    Fim             reduce using rule 10 (C -> var atribui E ; .)
+    ;               reduce using rule 10 (C -> var atribui E ; .)
+    senao           reduce using rule 10 (C -> var atribui E ; .)
+    fim_se          reduce using rule 10 (C -> var atribui E ; .)
 
 
 state 55
 
-    (39) E -> var ( ) .
+    (5) condicao -> se E entao c_list . senao c_list fim_se
+    (47) c_list -> c_list . ; C
 
-    e               reduce using rule 39 (E -> var ( ) .)
-    ou              reduce using rule 39 (E -> var ( ) .)
-    +               reduce using rule 39 (E -> var ( ) .)
-    -               reduce using rule 39 (E -> var ( ) .)
-    *               reduce using rule 39 (E -> var ( ) .)
-    /               reduce using rule 39 (E -> var ( ) .)
-    Fim             reduce using rule 39 (E -> var ( ) .)
-    ;               reduce using rule 39 (E -> var ( ) .)
-    )               reduce using rule 39 (E -> var ( ) .)
-    ,               reduce using rule 39 (E -> var ( ) .)
+    senao           shift and go to state 75
+    ;               shift and go to state 76
 
 
 state 56
 
-    (31) arg_list -> E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (46) c_list -> C .
 
-    )               reduce using rule 31 (arg_list -> E .)
-    ,               reduce using rule 31 (arg_list -> E .)
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    senao           reduce using rule 46 (c_list -> C .)
+    ;               reduce using rule 46 (c_list -> C .)
+    fim_se          reduce using rule 46 (c_list -> C .)
 
 
 state 57
 
-    (8) C -> var atribui E . ;
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (29) B -> E e E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    ;               shift and go to state 71
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    entao           reduce using rule 29 (B -> E e E .)
+    e               reduce using rule 29 (B -> E e E .)
+    ou              reduce using rule 29 (B -> E e E .)
+    )               reduce using rule 29 (B -> E e E .)
+    ,               reduce using rule 29 (B -> E e E .)
+    ;               reduce using rule 29 (B -> E e E .)
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
+
+  ! +               [ reduce using rule 29 (B -> E e E .) ]
+  ! -               [ reduce using rule 29 (B -> E e E .) ]
+  ! *               [ reduce using rule 29 (B -> E e E .) ]
+  ! /               [ reduce using rule 29 (B -> E e E .) ]
+  ! <               [ reduce using rule 29 (B -> E e E .) ]
+  ! >               [ reduce using rule 29 (B -> E e E .) ]
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
 
 
 state 58
 
-    (37) E -> ( E ) .
+    (30) B -> E ou E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    e               reduce using rule 37 (E -> ( E ) .)
-    ou              reduce using rule 37 (E -> ( E ) .)
-    +               reduce using rule 37 (E -> ( E ) .)
-    -               reduce using rule 37 (E -> ( E ) .)
-    *               reduce using rule 37 (E -> ( E ) .)
-    /               reduce using rule 37 (E -> ( E ) .)
-    Fim             reduce using rule 37 (E -> ( E ) .)
-    ;               reduce using rule 37 (E -> ( E ) .)
-    )               reduce using rule 37 (E -> ( E ) .)
-    ,               reduce using rule 37 (E -> ( E ) .)
+    entao           reduce using rule 30 (B -> E ou E .)
+    ou              reduce using rule 30 (B -> E ou E .)
+    )               reduce using rule 30 (B -> E ou E .)
+    ,               reduce using rule 30 (B -> E ou E .)
+    ;               reduce using rule 30 (B -> E ou E .)
+    e               shift and go to state 37
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
+
+  ! e               [ reduce using rule 30 (B -> E ou E .) ]
+  ! +               [ reduce using rule 30 (B -> E ou E .) ]
+  ! -               [ reduce using rule 30 (B -> E ou E .) ]
+  ! *               [ reduce using rule 30 (B -> E ou E .) ]
+  ! /               [ reduce using rule 30 (B -> E ou E .) ]
+  ! <               [ reduce using rule 30 (B -> E ou E .) ]
+  ! >               [ reduce using rule 30 (B -> E ou E .) ]
+  ! ou              [ shift and go to state 38 ]
 
 
 state 59
 
-    (6) C -> escreva ( e_list . ) ;
-    (15) e_list -> e_list . , E
-    (16) e_list -> e_list . , string
+    (20) N -> E + E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    )               shift and go to state 72
-    ,               shift and go to state 73
+    entao           reduce using rule 20 (N -> E + E .)
+    e               reduce using rule 20 (N -> E + E .)
+    ou              reduce using rule 20 (N -> E + E .)
+    +               reduce using rule 20 (N -> E + E .)
+    -               reduce using rule 20 (N -> E + E .)
+    <               reduce using rule 20 (N -> E + E .)
+    >               reduce using rule 20 (N -> E + E .)
+    )               reduce using rule 20 (N -> E + E .)
+    ,               reduce using rule 20 (N -> E + E .)
+    ;               reduce using rule 20 (N -> E + E .)
+    *               shift and go to state 41
+    /               shift and go to state 42
+
+  ! *               [ reduce using rule 20 (N -> E + E .) ]
+  ! /               [ reduce using rule 20 (N -> E + E .) ]
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
+  ! +               [ shift and go to state 39 ]
+  ! -               [ shift and go to state 40 ]
+  ! <               [ shift and go to state 43 ]
+  ! >               [ shift and go to state 44 ]
 
 
 state 60
 
-    (13) e_list -> E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (21) N -> E - E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    )               reduce using rule 13 (e_list -> E .)
-    ,               reduce using rule 13 (e_list -> E .)
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    entao           reduce using rule 21 (N -> E - E .)
+    e               reduce using rule 21 (N -> E - E .)
+    ou              reduce using rule 21 (N -> E - E .)
+    +               reduce using rule 21 (N -> E - E .)
+    -               reduce using rule 21 (N -> E - E .)
+    <               reduce using rule 21 (N -> E - E .)
+    >               reduce using rule 21 (N -> E - E .)
+    )               reduce using rule 21 (N -> E - E .)
+    ,               reduce using rule 21 (N -> E - E .)
+    ;               reduce using rule 21 (N -> E - E .)
+    *               shift and go to state 41
+    /               shift and go to state 42
+
+  ! *               [ reduce using rule 21 (N -> E - E .) ]
+  ! /               [ reduce using rule 21 (N -> E - E .) ]
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
+  ! +               [ shift and go to state 39 ]
+  ! -               [ shift and go to state 40 ]
+  ! <               [ shift and go to state 43 ]
+  ! >               [ shift and go to state 44 ]
 
 
 state 61
 
-    (14) e_list -> string .
-    (36) E -> string .
+    (22) N -> E * E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-  ! reduce/reduce conflict for ) resolved using rule 14 (e_list -> string .)
-  ! reduce/reduce conflict for , resolved using rule 14 (e_list -> string .)
-    )               reduce using rule 14 (e_list -> string .)
-    ,               reduce using rule 14 (e_list -> string .)
-    e               reduce using rule 36 (E -> string .)
-    ou              reduce using rule 36 (E -> string .)
-    +               reduce using rule 36 (E -> string .)
-    -               reduce using rule 36 (E -> string .)
-    *               reduce using rule 36 (E -> string .)
-    /               reduce using rule 36 (E -> string .)
+    entao           reduce using rule 22 (N -> E * E .)
+    e               reduce using rule 22 (N -> E * E .)
+    ou              reduce using rule 22 (N -> E * E .)
+    +               reduce using rule 22 (N -> E * E .)
+    -               reduce using rule 22 (N -> E * E .)
+    *               reduce using rule 22 (N -> E * E .)
+    /               reduce using rule 22 (N -> E * E .)
+    <               reduce using rule 22 (N -> E * E .)
+    >               reduce using rule 22 (N -> E * E .)
+    )               reduce using rule 22 (N -> E * E .)
+    ,               reduce using rule 22 (N -> E * E .)
+    ;               reduce using rule 22 (N -> E * E .)
 
-  ! )               [ reduce using rule 36 (E -> string .) ]
-  ! ,               [ reduce using rule 36 (E -> string .) ]
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
+  ! +               [ shift and go to state 39 ]
+  ! -               [ shift and go to state 40 ]
+  ! *               [ shift and go to state 41 ]
+  ! /               [ shift and go to state 42 ]
+  ! <               [ shift and go to state 43 ]
+  ! >               [ shift and go to state 44 ]
 
 
 state 62
 
-    (7) C -> leia ( var . ) ;
+    (23) N -> E / E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    )               shift and go to state 74
+    entao           reduce using rule 23 (N -> E / E .)
+    e               reduce using rule 23 (N -> E / E .)
+    ou              reduce using rule 23 (N -> E / E .)
+    +               reduce using rule 23 (N -> E / E .)
+    -               reduce using rule 23 (N -> E / E .)
+    *               reduce using rule 23 (N -> E / E .)
+    /               reduce using rule 23 (N -> E / E .)
+    <               reduce using rule 23 (N -> E / E .)
+    >               reduce using rule 23 (N -> E / E .)
+    )               reduce using rule 23 (N -> E / E .)
+    ,               reduce using rule 23 (N -> E / E .)
+    ;               reduce using rule 23 (N -> E / E .)
+
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
+  ! +               [ shift and go to state 39 ]
+  ! -               [ shift and go to state 40 ]
+  ! *               [ shift and go to state 41 ]
+  ! /               [ shift and go to state 42 ]
+  ! <               [ shift and go to state 43 ]
+  ! >               [ shift and go to state 44 ]
 
 
 state 63
 
-    (9) C -> inteiro : code . ;
-    (3) code -> code . ; S
+    (24) N -> E < E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    ;               shift and go to state 75
+    entao           reduce using rule 24 (N -> E < E .)
+    e               reduce using rule 24 (N -> E < E .)
+    ou              reduce using rule 24 (N -> E < E .)
+    <               reduce using rule 24 (N -> E < E .)
+    >               reduce using rule 24 (N -> E < E .)
+    )               reduce using rule 24 (N -> E < E .)
+    ,               reduce using rule 24 (N -> E < E .)
+    ;               reduce using rule 24 (N -> E < E .)
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+
+  ! +               [ reduce using rule 24 (N -> E < E .) ]
+  ! -               [ reduce using rule 24 (N -> E < E .) ]
+  ! *               [ reduce using rule 24 (N -> E < E .) ]
+  ! /               [ reduce using rule 24 (N -> E < E .) ]
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
+  ! <               [ shift and go to state 43 ]
+  ! >               [ shift and go to state 44 ]
 
 
 state 64
 
-    (10) C -> real : var . ;
+    (25) N -> E > E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    ;               shift and go to state 76
+    entao           reduce using rule 25 (N -> E > E .)
+    e               reduce using rule 25 (N -> E > E .)
+    ou              reduce using rule 25 (N -> E > E .)
+    <               reduce using rule 25 (N -> E > E .)
+    >               reduce using rule 25 (N -> E > E .)
+    )               reduce using rule 25 (N -> E > E .)
+    ,               reduce using rule 25 (N -> E > E .)
+    ;               reduce using rule 25 (N -> E > E .)
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+
+  ! +               [ reduce using rule 25 (N -> E > E .) ]
+  ! -               [ reduce using rule 25 (N -> E > E .) ]
+  ! *               [ reduce using rule 25 (N -> E > E .) ]
+  ! /               [ reduce using rule 25 (N -> E > E .) ]
+  ! e               [ shift and go to state 37 ]
+  ! ou              [ shift and go to state 38 ]
+  ! <               [ shift and go to state 43 ]
+  ! >               [ shift and go to state 44 ]
 
 
 state 65
 
-    (11) C -> logico : var . ;
+    (42) E -> var ( arg_list . )
+    (36) arg_list -> arg_list . , E
 
-    ;               shift and go to state 77
+    )               shift and go to state 77
+    ,               shift and go to state 78
 
 
 state 66
 
-    (12) C -> caracter : var . ;
+    (43) E -> var ( ) .
 
-    ;               shift and go to state 78
+    entao           reduce using rule 43 (E -> var ( ) .)
+    e               reduce using rule 43 (E -> var ( ) .)
+    ou              reduce using rule 43 (E -> var ( ) .)
+    +               reduce using rule 43 (E -> var ( ) .)
+    -               reduce using rule 43 (E -> var ( ) .)
+    *               reduce using rule 43 (E -> var ( ) .)
+    /               reduce using rule 43 (E -> var ( ) .)
+    <               reduce using rule 43 (E -> var ( ) .)
+    >               reduce using rule 43 (E -> var ( ) .)
+    )               reduce using rule 43 (E -> var ( ) .)
+    ,               reduce using rule 43 (E -> var ( ) .)
+    ;               reduce using rule 43 (E -> var ( ) .)
 
 
 state 67
 
-    (22) N -> cos ( E . )
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (35) arg_list -> E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    )               shift and go to state 79
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    )               reduce using rule 35 (arg_list -> E .)
+    ,               reduce using rule 35 (arg_list -> E .)
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
 
 
 state 68
 
-    (23) N -> sen ( E . )
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (41) E -> ( E ) .
 
-    )               shift and go to state 80
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    entao           reduce using rule 41 (E -> ( E ) .)
+    e               reduce using rule 41 (E -> ( E ) .)
+    ou              reduce using rule 41 (E -> ( E ) .)
+    +               reduce using rule 41 (E -> ( E ) .)
+    -               reduce using rule 41 (E -> ( E ) .)
+    *               reduce using rule 41 (E -> ( E ) .)
+    /               reduce using rule 41 (E -> ( E ) .)
+    <               reduce using rule 41 (E -> ( E ) .)
+    >               reduce using rule 41 (E -> ( E ) .)
+    )               reduce using rule 41 (E -> ( E ) .)
+    ,               reduce using rule 41 (E -> ( E ) .)
+    ;               reduce using rule 41 (E -> ( E ) .)
 
 
 state 69
 
-    (38) E -> var ( arg_list ) .
+    (26) N -> cos ( E . )
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    e               reduce using rule 38 (E -> var ( arg_list ) .)
-    ou              reduce using rule 38 (E -> var ( arg_list ) .)
-    +               reduce using rule 38 (E -> var ( arg_list ) .)
-    -               reduce using rule 38 (E -> var ( arg_list ) .)
-    *               reduce using rule 38 (E -> var ( arg_list ) .)
-    /               reduce using rule 38 (E -> var ( arg_list ) .)
-    Fim             reduce using rule 38 (E -> var ( arg_list ) .)
-    ;               reduce using rule 38 (E -> var ( arg_list ) .)
-    )               reduce using rule 38 (E -> var ( arg_list ) .)
-    ,               reduce using rule 38 (E -> var ( arg_list ) .)
+    )               shift and go to state 79
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
 
 
 state 70
 
-    (32) arg_list -> arg_list , . E
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (27) N -> sen ( E . )
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    var             shift and go to state 36
-    string          shift and go to state 10
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    )               shift and go to state 80
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
 
-    E                              shift and go to state 81
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
 
 state 71
 
-    (8) C -> var atribui E ; .
+    (8) C -> escreva ( e_list ) ; .
 
-    Fim             reduce using rule 8 (C -> var atribui E ; .)
-    ;               reduce using rule 8 (C -> var atribui E ; .)
+    Fim             reduce using rule 8 (C -> escreva ( e_list ) ; .)
+    ;               reduce using rule 8 (C -> escreva ( e_list ) ; .)
+    senao           reduce using rule 8 (C -> escreva ( e_list ) ; .)
+    fim_se          reduce using rule 8 (C -> escreva ( e_list ) ; .)
 
 
 state 72
 
-    (6) C -> escreva ( e_list ) . ;
+    (17) e_list -> e_list , E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    ;               shift and go to state 82
+    )               reduce using rule 17 (e_list -> e_list , E .)
+    ,               reduce using rule 17 (e_list -> e_list , E .)
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
 
 
 state 73
 
-    (15) e_list -> e_list , . E
-    (16) e_list -> e_list , . string
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (18) e_list -> e_list , string .
+    (40) E -> string .
 
-    string          shift and go to state 84
-    var             shift and go to state 36
-    (               shift and go to state 11
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+  ! reduce/reduce conflict for ) resolved using rule 18 (e_list -> e_list , string .)
+  ! reduce/reduce conflict for , resolved using rule 18 (e_list -> e_list , string .)
+    )               reduce using rule 18 (e_list -> e_list , string .)
+    ,               reduce using rule 18 (e_list -> e_list , string .)
+    e               reduce using rule 40 (E -> string .)
+    ou              reduce using rule 40 (E -> string .)
+    +               reduce using rule 40 (E -> string .)
+    -               reduce using rule 40 (E -> string .)
+    *               reduce using rule 40 (E -> string .)
+    /               reduce using rule 40 (E -> string .)
+    <               reduce using rule 40 (E -> string .)
+    >               reduce using rule 40 (E -> string .)
 
-    E                              shift and go to state 83
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
+  ! )               [ reduce using rule 40 (E -> string .) ]
+  ! ,               [ reduce using rule 40 (E -> string .) ]
+
 
 state 74
 
-    (7) C -> leia ( var ) . ;
+    (9) C -> leia ( var ) ; .
 
-    ;               shift and go to state 85
+    Fim             reduce using rule 9 (C -> leia ( var ) ; .)
+    ;               reduce using rule 9 (C -> leia ( var ) ; .)
+    senao           reduce using rule 9 (C -> leia ( var ) ; .)
+    fim_se          reduce using rule 9 (C -> leia ( var ) ; .)
 
 
 state 75
 
-    (9) C -> inteiro : code ; .
-    (3) code -> code ; . S
-    (4) S -> . E
-    (5) S -> . C
-    (33) E -> . var
-    (34) E -> . B
-    (35) E -> . N
-    (36) E -> . string
-    (37) E -> . ( E )
-    (38) E -> . var ( arg_list )
-    (39) E -> . var ( )
-    (6) C -> . escreva ( e_list ) ;
-    (7) C -> . leia ( var ) ;
-    (8) C -> . var atribui E ;
-    (9) C -> . inteiro : code ;
-    (10) C -> . real : var ;
-    (11) C -> . logico : var ;
-    (12) C -> . caracter : var ;
-    (24) B -> . F
-    (25) B -> . E e E
-    (26) B -> . E ou E
-    (17) N -> . nr
-    (18) N -> . E + E
-    (19) N -> . E - E
-    (20) N -> . E * E
-    (21) N -> . E / E
-    (22) N -> . cos ( E )
-    (23) N -> . sen ( E )
-    (27) F -> . verdadeiro
-    (28) F -> . falso
-    (29) F -> . nao F
-    (30) F -> . nao var
+    (5) condicao -> se E entao c_list senao . c_list fim_se
+    (46) c_list -> . C
+    (47) c_list -> . c_list ; C
+    (6) C -> . e
+    (7) C -> . condicao
+    (8) C -> . escreva ( e_list ) ;
+    (9) C -> . leia ( var ) ;
+    (10) C -> . var atribui E ;
+    (5) condicao -> . se E entao c_list senao c_list fim_se
 
-    Fim             reduce using rule 9 (C -> inteiro : code ; .)
-    ;               reduce using rule 9 (C -> inteiro : code ; .)
-    var             shift and go to state 7
-    string          shift and go to state 10
-    (               shift and go to state 11
-    escreva         shift and go to state 12
-    leia            shift and go to state 13
-    inteiro         shift and go to state 14
-    real            shift and go to state 15
-    logico          shift and go to state 16
-    caracter        shift and go to state 17
-    nr              shift and go to state 19
-    cos             shift and go to state 20
-    sen             shift and go to state 21
-    verdadeiro      shift and go to state 22
-    falso           shift and go to state 23
-    nao             shift and go to state 24
+    e               shift and go to state 6
+    escreva         shift and go to state 8
+    leia            shift and go to state 9
+    var             shift and go to state 10
+    se              shift and go to state 11
 
-    S                              shift and go to state 47
-    E                              shift and go to state 5
-    C                              shift and go to state 6
-    B                              shift and go to state 8
-    N                              shift and go to state 9
-    F                              shift and go to state 18
+    c_list                         shift and go to state 81
+    C                              shift and go to state 56
+    condicao                       shift and go to state 7
 
 state 76
 
-    (10) C -> real : var ; .
+    (47) c_list -> c_list ; . C
+    (6) C -> . e
+    (7) C -> . condicao
+    (8) C -> . escreva ( e_list ) ;
+    (9) C -> . leia ( var ) ;
+    (10) C -> . var atribui E ;
+    (5) condicao -> . se E entao c_list senao c_list fim_se
 
-    Fim             reduce using rule 10 (C -> real : var ; .)
-    ;               reduce using rule 10 (C -> real : var ; .)
+    e               shift and go to state 6
+    escreva         shift and go to state 8
+    leia            shift and go to state 9
+    var             shift and go to state 10
+    se              shift and go to state 11
 
+    C                              shift and go to state 82
+    condicao                       shift and go to state 7
 
 state 77
 
-    (11) C -> logico : var ; .
+    (42) E -> var ( arg_list ) .
 
-    Fim             reduce using rule 11 (C -> logico : var ; .)
-    ;               reduce using rule 11 (C -> logico : var ; .)
+    entao           reduce using rule 42 (E -> var ( arg_list ) .)
+    e               reduce using rule 42 (E -> var ( arg_list ) .)
+    ou              reduce using rule 42 (E -> var ( arg_list ) .)
+    +               reduce using rule 42 (E -> var ( arg_list ) .)
+    -               reduce using rule 42 (E -> var ( arg_list ) .)
+    *               reduce using rule 42 (E -> var ( arg_list ) .)
+    /               reduce using rule 42 (E -> var ( arg_list ) .)
+    <               reduce using rule 42 (E -> var ( arg_list ) .)
+    >               reduce using rule 42 (E -> var ( arg_list ) .)
+    )               reduce using rule 42 (E -> var ( arg_list ) .)
+    ,               reduce using rule 42 (E -> var ( arg_list ) .)
+    ;               reduce using rule 42 (E -> var ( arg_list ) .)
 
 
 state 78
 
-    (12) C -> caracter : var ; .
+    (36) arg_list -> arg_list , . E
+    (37) E -> . var
+    (38) E -> . B
+    (39) E -> . N
+    (40) E -> . string
+    (41) E -> . ( E )
+    (42) E -> . var ( arg_list )
+    (43) E -> . var ( )
+    (28) B -> . F
+    (29) B -> . E e E
+    (30) B -> . E ou E
+    (19) N -> . nr
+    (20) N -> . E + E
+    (21) N -> . E - E
+    (22) N -> . E * E
+    (23) N -> . E / E
+    (24) N -> . E < E
+    (25) N -> . E > E
+    (26) N -> . cos ( E )
+    (27) N -> . sen ( E )
+    (31) F -> . verdadeiro
+    (32) F -> . falso
+    (33) F -> . nao F
+    (34) F -> . nao var
 
-    Fim             reduce using rule 12 (C -> caracter : var ; .)
-    ;               reduce using rule 12 (C -> caracter : var ; .)
+    var             shift and go to state 18
+    string          shift and go to state 21
+    (               shift and go to state 22
+    nr              shift and go to state 24
+    cos             shift and go to state 25
+    sen             shift and go to state 26
+    verdadeiro      shift and go to state 27
+    falso           shift and go to state 28
+    nao             shift and go to state 29
 
+    E                              shift and go to state 83
+    B                              shift and go to state 19
+    N                              shift and go to state 20
+    F                              shift and go to state 23
 
 state 79
 
-    (22) N -> cos ( E ) .
+    (26) N -> cos ( E ) .
 
-    e               reduce using rule 22 (N -> cos ( E ) .)
-    ou              reduce using rule 22 (N -> cos ( E ) .)
-    +               reduce using rule 22 (N -> cos ( E ) .)
-    -               reduce using rule 22 (N -> cos ( E ) .)
-    *               reduce using rule 22 (N -> cos ( E ) .)
-    /               reduce using rule 22 (N -> cos ( E ) .)
-    Fim             reduce using rule 22 (N -> cos ( E ) .)
-    ;               reduce using rule 22 (N -> cos ( E ) .)
-    )               reduce using rule 22 (N -> cos ( E ) .)
-    ,               reduce using rule 22 (N -> cos ( E ) .)
+    entao           reduce using rule 26 (N -> cos ( E ) .)
+    e               reduce using rule 26 (N -> cos ( E ) .)
+    ou              reduce using rule 26 (N -> cos ( E ) .)
+    +               reduce using rule 26 (N -> cos ( E ) .)
+    -               reduce using rule 26 (N -> cos ( E ) .)
+    *               reduce using rule 26 (N -> cos ( E ) .)
+    /               reduce using rule 26 (N -> cos ( E ) .)
+    <               reduce using rule 26 (N -> cos ( E ) .)
+    >               reduce using rule 26 (N -> cos ( E ) .)
+    )               reduce using rule 26 (N -> cos ( E ) .)
+    ,               reduce using rule 26 (N -> cos ( E ) .)
+    ;               reduce using rule 26 (N -> cos ( E ) .)
 
 
 state 80
 
-    (23) N -> sen ( E ) .
+    (27) N -> sen ( E ) .
 
-    e               reduce using rule 23 (N -> sen ( E ) .)
-    ou              reduce using rule 23 (N -> sen ( E ) .)
-    +               reduce using rule 23 (N -> sen ( E ) .)
-    -               reduce using rule 23 (N -> sen ( E ) .)
-    *               reduce using rule 23 (N -> sen ( E ) .)
-    /               reduce using rule 23 (N -> sen ( E ) .)
-    Fim             reduce using rule 23 (N -> sen ( E ) .)
-    ;               reduce using rule 23 (N -> sen ( E ) .)
-    )               reduce using rule 23 (N -> sen ( E ) .)
-    ,               reduce using rule 23 (N -> sen ( E ) .)
+    entao           reduce using rule 27 (N -> sen ( E ) .)
+    e               reduce using rule 27 (N -> sen ( E ) .)
+    ou              reduce using rule 27 (N -> sen ( E ) .)
+    +               reduce using rule 27 (N -> sen ( E ) .)
+    -               reduce using rule 27 (N -> sen ( E ) .)
+    *               reduce using rule 27 (N -> sen ( E ) .)
+    /               reduce using rule 27 (N -> sen ( E ) .)
+    <               reduce using rule 27 (N -> sen ( E ) .)
+    >               reduce using rule 27 (N -> sen ( E ) .)
+    )               reduce using rule 27 (N -> sen ( E ) .)
+    ,               reduce using rule 27 (N -> sen ( E ) .)
+    ;               reduce using rule 27 (N -> sen ( E ) .)
 
 
 state 81
 
-    (32) arg_list -> arg_list , E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (5) condicao -> se E entao c_list senao c_list . fim_se
+    (47) c_list -> c_list . ; C
 
-    )               reduce using rule 32 (arg_list -> arg_list , E .)
-    ,               reduce using rule 32 (arg_list -> arg_list , E .)
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    fim_se          shift and go to state 84
+    ;               shift and go to state 76
 
 
 state 82
 
-    (6) C -> escreva ( e_list ) ; .
+    (47) c_list -> c_list ; C .
 
-    Fim             reduce using rule 6 (C -> escreva ( e_list ) ; .)
-    ;               reduce using rule 6 (C -> escreva ( e_list ) ; .)
+    senao           reduce using rule 47 (c_list -> c_list ; C .)
+    ;               reduce using rule 47 (c_list -> c_list ; C .)
+    fim_se          reduce using rule 47 (c_list -> c_list ; C .)
 
 
 state 83
 
-    (15) e_list -> e_list , E .
-    (25) B -> E . e E
-    (26) B -> E . ou E
-    (18) N -> E . + E
-    (19) N -> E . - E
-    (20) N -> E . * E
-    (21) N -> E . / E
+    (36) arg_list -> arg_list , E .
+    (29) B -> E . e E
+    (30) B -> E . ou E
+    (20) N -> E . + E
+    (21) N -> E . - E
+    (22) N -> E . * E
+    (23) N -> E . / E
+    (24) N -> E . < E
+    (25) N -> E . > E
 
-    )               reduce using rule 15 (e_list -> e_list , E .)
-    ,               reduce using rule 15 (e_list -> e_list , E .)
-    e               shift and go to state 27
-    ou              shift and go to state 28
-    +               shift and go to state 29
-    -               shift and go to state 30
-    *               shift and go to state 31
-    /               shift and go to state 32
+    )               reduce using rule 36 (arg_list -> arg_list , E .)
+    ,               reduce using rule 36 (arg_list -> arg_list , E .)
+    e               shift and go to state 37
+    ou              shift and go to state 38
+    +               shift and go to state 39
+    -               shift and go to state 40
+    *               shift and go to state 41
+    /               shift and go to state 42
+    <               shift and go to state 43
+    >               shift and go to state 44
 
 
 state 84
 
-    (16) e_list -> e_list , string .
-    (36) E -> string .
+    (5) condicao -> se E entao c_list senao c_list fim_se .
 
-  ! reduce/reduce conflict for ) resolved using rule 16 (e_list -> e_list , string .)
-  ! reduce/reduce conflict for , resolved using rule 16 (e_list -> e_list , string .)
-    )               reduce using rule 16 (e_list -> e_list , string .)
-    ,               reduce using rule 16 (e_list -> e_list , string .)
-    e               reduce using rule 36 (E -> string .)
-    ou              reduce using rule 36 (E -> string .)
-    +               reduce using rule 36 (E -> string .)
-    -               reduce using rule 36 (E -> string .)
-    *               reduce using rule 36 (E -> string .)
-    /               reduce using rule 36 (E -> string .)
-
-  ! )               [ reduce using rule 36 (E -> string .) ]
-  ! ,               [ reduce using rule 36 (E -> string .) ]
-
-
-state 85
-
-    (7) C -> leia ( var ) ; .
-
-    Fim             reduce using rule 7 (C -> leia ( var ) ; .)
-    ;               reduce using rule 7 (C -> leia ( var ) ; .)
+    Fim             reduce using rule 5 (condicao -> se E entao c_list senao c_list fim_se .)
+    ;               reduce using rule 5 (condicao -> se E entao c_list senao c_list fim_se .)
+    senao           reduce using rule 5 (condicao -> se E entao c_list senao c_list fim_se .)
+    fim_se          reduce using rule 5 (condicao -> se E entao c_list senao c_list fim_se .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: reduce/reduce conflict in state 61 resolved using rule (e_list -> string)
-WARNING: rejected rule (E -> string) in state 61
-WARNING: reduce/reduce conflict in state 84 resolved using rule (e_list -> e_list , string)
-WARNING: rejected rule (E -> string) in state 84
+WARNING: reduce/reduce conflict in state 33 resolved using rule (e_list -> string)
+WARNING: rejected rule (E -> string) in state 33
+WARNING: reduce/reduce conflict in state 73 resolved using rule (e_list -> e_list , string)
+WARNING: rejected rule (E -> string) in state 73
