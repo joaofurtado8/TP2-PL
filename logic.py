@@ -36,4 +36,3 @@ if args.file is not None:
     run_batch(args.file)
 else:
     run_interactively()
-

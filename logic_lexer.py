@@ -6,7 +6,7 @@ class LogicLexer:
 
     keywords = ()
     tokens = ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico",
-                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "Inicio", "Fim", "cos","sen","se", "fim_se", "entao", "senao")
+                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "Inicio", "Fim", "cos", "sen", "se", "fim_se", "entao", "senao", "para", "de", "ate")
 
     literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#', ':', '>', '<']
     t_ignore = " \t\n"

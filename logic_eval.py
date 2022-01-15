@@ -1,6 +1,6 @@
 # logic_eval
 import math
-
+from symbol_table import SymbolTable
 
 class LogicEval:
 
@@ -25,7 +25,9 @@ class LogicEval:
         "escreva": lambda a: print(*a),
         "leia": lambda a: input(*a),
         "se": lambda args: LogicEval._se(*args),
-        "para": lambda args: LogicEval._para(*args)
+        "para": lambda args: LogicEval._para(*args),
+        "call": lambda args: LogicEval._call(*args)
+
     }
     # Symbol Table (Tabela de Símbolos)
     symbols = {}
@@ -46,6 +48,27 @@ class LogicEval:
         LogicEval.symbols[var] = value
 
     @staticmethod
+    def _call(args):
+        name, values = args
+        name = f"{name}/{len(values)}"
+        if name in LogicEval.symbols:
+            code = LogicEval.symbols[name]["code"]
+            var_list = LogicEval.symbols[name]["vars"]
+            for var_name, value in zip(var_list, values):
+                LogicEval.symbols.re_set(var_name, LogicEval.eval(value))
+            result = LogicEval.eval(code)
+            for var in var_list:
+                del LogicEval.symbols[var]
+            return result
+
+        else:
+            raise Exception(f"Function {name} not defined")
+
+    @staticmethod
+    def _se(cond, entao, senao):
+        return LogicEval.eval(entao if cond else senao)
+
+    @staticmethod
     def eval(ast):
         if type(ast) in (float, bool, str):
             return ast
@@ -54,13 +77,9 @@ class LogicEval:
         if type(ast) is list:
             ans = None
             for c in ast:
-                ans = LogicEval._eval_dict(c)
+                ans = LogicEval.eval(c)
             return ans
         raise Exception(f"Eval called with weird type: {type(ast)}")
-
-    @staticmethod
-    def _se(cond, entao, senao):
-        return LogicEval.eval(entao if cond else senao)
 
     @staticmethod
     def _eval_dict(ast):
@@ -81,4 +100,4 @@ class LogicEval:
                 return LogicEval.symbols[ast["var"]]
             raise Exception(f"Unknown variable {ast['var']}")
         else:
-            raise Exception("Weird dict on eval")# logic_eval
+            raise Exception("Weird dict on eval")
