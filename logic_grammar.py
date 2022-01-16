@@ -13,8 +13,9 @@ class LogicGrammar:
         ("left", "ou"),
         ("left", "e"),
         ("left", "<", ">"),
+        ("left", "cos", "sen"),
         ("left", "+", "-"),
-        ("left", "*", "/", "cos")
+        ("left", "*", "/")
     )
 
     def p_error(self, p):
@@ -37,7 +38,10 @@ class LogicGrammar:
         p[0].append(p[3])
 
     def p_s(self, p):
-        """S : C"""
+        """S : C
+             | E
+             | A
+             | condicao"""
         p[0] = p[1]
 
     def p_condicao(self, p):
@@ -48,11 +52,6 @@ class LogicGrammar:
             "data": [p[4], p[6]]
         }
 
-    def p_c0(self, p):
-        """ C : E
-              | condicao """
-        p[0] = p[1]
-
     def p_c1(self, p):
         """C : escreva '(' e_list ')' ';'"""
         p[0] = {'op': p[1], 'args': p[3]}
@@ -62,16 +61,20 @@ class LogicGrammar:
         p[0] = {'op': 'attrib', 'args': [{'var': p[1]}, p[3]]}
 
     def p_c3(self, p):
-        """ C : var atribui E ';' """
-        p[0] = {"op": "atribui", "args": [p[1], p[3]]}
-
-    def p_c4(self, p):
-        """ C : para var de E ate E  '{' c_list '}' """
+        """ C : para var de E ate E  '{' c_list '}' fim_para """
         p[0] = {
             "op": "para",
             "args": [p[2], p[4], p[6]],
             "data": [p[8]],
         }
+
+    def p_a0(self, p):
+        """ A : fun var '(' args ')' '{' code '}' """
+        p[0] = {'op': 'fun', 'args': [{'var': p[2]}, p[4]], "code": p[7]}
+
+    def p_a1(self, p):
+        """ A : var atribui E ';' """
+        p[0] = {"op": "atribui", "args": [p[1], p[3]]}
 
     def p_e_list(self, p):
         """ e_list : E
@@ -95,20 +98,20 @@ class LogicGrammar:
         p[0] = p[1]
 
     def p_n2(self, p):
-        """N : E '+' E
-             | E '-' E
-             | E '*' E
-             | E '/' E
-             | E '<' E
-             | E '>' E"""
+        """N : E '+' E ';'
+             | E '-' E ';'
+             | E '*' E ';'
+             | E '/' E ';'
+             | E '<' E ';'
+             | E '>' E ';'"""
         p[0] = {"op": p[2], "args": [p[1], p[3]]}
 
     def p_n3(self, p):
-        """N : cos '(' E ')'"""
+        """N : cos '(' E ')' ';'"""
         p[0] = {"op": p[1], "args": [p[3]]}
 
     def p_n4(self, p):
-        """N : sen '(' E ')'"""
+        """N : sen '(' E ')' ';'"""
         p[0] = {"op": p[1], "args": [p[3]]}
 
     def p_b0(self, p):
@@ -116,8 +119,8 @@ class LogicGrammar:
         p[0] = p[1]
 
     def p_b1(self, p):
-        """B : E e E
-             | E ou E"""
+        """B : E e E ';'
+             | E ou E ';'"""
         p[0] = {"op": p[2], "args": [p[1], p[3]]}
 
     def p_f1(self, p):
@@ -148,11 +151,16 @@ class LogicGrammar:
         p[0] = p[1]
 
     def p_e4(self, p):
-        """ E : var '(' e_list ')'
+        """ E : var '(' arg_list ')'
               | var '(' ')' """
+        arg_list = [] if p[3] == ')' else p[3]
+        p[0] = {"op": "call", "args": [{"var": p[1]}, {"argList": arg_list}]}
+
+    def p_e5(self, p):
+        """ E : var '(' var_list ')'"""
         p[0] = {"op": "call",
-                "args": [],
-                "data": [p[1], [] if p[3] == ")" else p[3]]}
+            "args": [],
+            "data": [p[1], [] if p[3] == ")" else p[3]]}
 
 
     def p_args(self, p):
@@ -187,6 +195,6 @@ class LogicGrammar:
     def parse(self, expression):
         ans = self.yacc.parse(lexer=self.lexer.lex, input=expression)
         pp = PrettyPrinter()
-        pp.pprint(ans)  # debug rulez!
+        pp.pprint(ans)
         return LogicEval.eval(ans)
 

@@ -5,8 +5,8 @@ import ply.lex as plex
 class LogicLexer:
 
     keywords = ()
-    tokens = ("var", "atribui", "nr", "ellipsis", "string", "inteiro", "real", "caracter", "logico",
-                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "Inicio", "Fim", "cos", "sen", "se", "fim_se", "entao", "senao", "para", "de", "ate")
+    tokens = ("var", "atribui", "nr", "string", "inteiro", "real", "caracter", "logico",
+                "verdadeiro", "falso", "nao", "e", "ou", "escreva", "leia", "Inicio", "Fim", "cos", "sen", "se", "fim_se", "entao", "senao", "para", "de", "ate", "fim_para", "fun")
 
     literals = ['(', ')', '+', '-', '/', '*', ';', '[', ']', '#', ':', '>', '<']
     t_ignore = " \t\n"
@@ -15,17 +15,13 @@ class LogicLexer:
         r"""\#.*"""
         pass
 
-    def t_ellipsis(self, t):
-        r"""\.{3}"""
-        return t
-
     def t_string(self, t):
         r'"[^"]*"'
         t.value = t.value[1:-1]
         return t
 
     def t_str(self, t):
-        r"não|verdadeiro|falso|e(screva)?|ou|for|Inicio|Fim|cos|atribui|sen|inteiro|se"
+        r"não|verdadeiro|falso|e(screva)?|ou|para|Inicio|Fim|cos|atribui|sen|inteiro|se|fun"
         t.type = t.value
         return t
 

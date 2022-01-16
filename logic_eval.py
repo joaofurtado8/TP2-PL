@@ -1,10 +1,14 @@
 # logic_eval
 import math
-from symbol_table import SymbolTable
+import pprint
 
 class LogicEval:
 
-    # Dispatch Table (Design Pattern)
+
+    symbols = {}
+
+    functions = {}
+
     operators = {
         "ou": lambda args: args[0] or args[1],
         "∨": lambda args: args[0] or args[1],
@@ -26,11 +30,11 @@ class LogicEval:
         "leia": lambda a: input(*a),
         "se": lambda args: LogicEval._se(*args),
         "para": lambda args: LogicEval._para(*args),
+        "fun": lambda args: LogicEval._fun(args),
         "call": lambda args: LogicEval._call(*args)
 
     }
-    # Symbol Table (Tabela de Símbolos)
-    symbols = {}
+
 
     @staticmethod
     def _para(args):
@@ -42,6 +46,14 @@ class LogicEval:
             iterator += 1
         return None
 
+    @staticmethod
+    def _se(cond, entao, senao):
+        return LogicEval.eval(entao if cond else senao)
+
+    @staticmethod
+    def _fun(args):
+        name, var_list, code = args
+        LogicEval.functions[name] = {"var_list": var_list, "code": code}
 
     @staticmethod
     def _atribui(var, value):
@@ -49,24 +61,20 @@ class LogicEval:
 
     @staticmethod
     def _call(args):
-        name, values = args
-        name = f"{name}/{len(values)}"
-        if name in LogicEval.symbols:
-            code = LogicEval.symbols[name]["code"]
-            var_list = LogicEval.symbols[name]["vars"]
-            for var_name, value in zip(var_list, values):
-                LogicEval.symbols.re_set(var_name, LogicEval.eval(value))
-            result = LogicEval.eval(code)
-            for var in var_list:
-                del LogicEval.symbols[var]
-            return result
+        pprint.pprint(args)
+        name, arg_list = args
+        if name not in LogicEval.functions:
+            raise Exception(f"Function not defined: {name}")
+        if len(arg_list) != len(LogicEval.functions[name]["var_list"]):
+            raise Exception(f"Function called with wrong number of arguments: {name}")
+        for var, value in zip(LogicEval.functions[name]["var_list"], arg_list):
+            LogicEval.symbols[var] = value
+        result = LogicEval.eval(LogicEval.functions[name]["code"])
+        for var in LogicEval.functions[name]["var_list"]:
+            del LogicEval.symbols[var]
+        return result
 
-        else:
-            raise Exception(f"Function {name} not defined")
 
-    @staticmethod
-    def _se(cond, entao, senao):
-        return LogicEval.eval(entao if cond else senao)
 
     @staticmethod
     def eval(ast):
