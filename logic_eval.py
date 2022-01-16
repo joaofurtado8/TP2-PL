@@ -89,6 +89,7 @@ class LogicEval:
             return ans
         raise Exception(f"Eval called with weird type: {type(ast)}")
 
+
     @staticmethod
     def _eval_dict(ast):
         if "op" in ast:
